@@ -16,7 +16,7 @@
             <h2>Faça seu login</h2>
             <p>Ainda não faz parte do nosso time! Registre-se agora!</p>
          </div>
-         <img src="{{URL::asset('/assets/logo.png')}}" alt="profile Pic" height="200" width="200">
+         <img class="img" src="{{URL::asset('/assets/logo.png')}}" alt="profile Pic" height="200" width="200">
       </div>
       <div class="main">
          <div class="col-md-6 col-sm-12">
@@ -32,11 +32,11 @@
                   </div>
                   <div class="form-group">
                      <label>Telefone</label>
-                     <input type="tel" class="form-control" placeholder="Telefone">
+                     <input type="tel" class="form-control" placeholder="Telefone" size="13" maxlength="13">
                   </div>
                   <div class="form-group">
                      <label>CPF</label>
-                     <input type="text" class="form-control" placeholder="CPF">
+                     <input type="text" class="form-control" placeholder="CPF" size="11" maxlength="11">
                   </div>
                   <div class="form-group">
                      <label>Data de Nascimento</label>
@@ -48,12 +48,10 @@
                   </div>
                   <div class="form-group">
                      <label>CEP</label>
-                     <input class="form-control" placeholder="CEP" type="number" name="cep" size="5" maxlength="5"> 
-                     - 
-                     <input type="number" name="cep2" size="3" maxlength="3" class="form-control" placeholder="CEP">
+                     <input class="form-control" type="" size="8" maxlength="8">
                   </div>
-                  <button type="submit" class="btn btn-black">Acesse</button>
-                  <button type="submit" class="btn btn-secondary">Cadastre-se</button>
+                  <button type="submit" class="btn btn-black">Cadastrar</button>
+                  <button type="submit" class="btn btn-balck">Cancelar</button>
                </form>
             </div>
          </div>

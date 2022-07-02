@@ -12,11 +12,11 @@
 </head>
 <body>
 <div class="sidenav">
-         <div class="login-main-text d-flex justify-content-center">
+         <div class="login-main-text">
             <h2>Faça seu login</h2>
             <p>Ainda não faz parte do nosso time! Registre-se agora!</p>
          </div>
-         <img src="{{URL('/assets/logo.png')}}" alt="profile Pic" height="200" width="200">
+         <img class='img' src="{{URL('/assets/logo.png')}}" alt="profile Pic" height="200" width="200">
       </div>
       <div class="main">
          <div class="col-md-6 col-sm-12">
@@ -49,10 +49,12 @@
                   </div>
                   <div class="form-group">
                      <label>Categoria</label>
-                     <select name="select">
-                      <option value="Sapatos">Calçados</option>
-                      <option value="Roupas" selected>Roupas</option>
-                      <option value="Acessórios">Acessórios</option>
+                  </div>
+                  <div class="form-group">
+                     <select>
+                     <option value="Sapatos">Calçados</option>
+                     <option value="Roupas">Roupas</option>
+                     <option value="Acessórios">Acessórios</option>
                      </select>
                   </div>
                   <div class="form-group">
@@ -60,7 +62,7 @@
                      <input cols="10" type="number" class="form-control" placeholder="Quantidade">
                   </div>
                   <button type="submit" class="btn btn-black">Salvar</button>
-                  <button type="submit" class="btn btn-secondary">Limpar</button>
+                  <button type="submit" class="btn btn-black">Limpar</button>
                </form>
             </div>
          </div>

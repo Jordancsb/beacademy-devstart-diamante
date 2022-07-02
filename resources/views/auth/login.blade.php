@@ -16,7 +16,7 @@
             <h2>Faça seu login</h2>
             <p>Ainda não faz parte do nosso time! Registre-se agora!</p>
          </div>
-         <img src="{{URL::asset('/assets/logo.png')}}" alt="profile Pic" height="200" width="200">
+         <img class="img" src="{{URL::asset('/assets/logo.png')}}" alt="profile Pic" height="200" width="200">
       </div>
       <div class="main">
          <div class="col-md-6 col-sm-12">
@@ -24,14 +24,14 @@
                <form>
                   <div class="form-group">
                      <label>Usuário/Email</label>
-                     <input type="text" class="form-control" placeholder="User Name">
+                     <input type="text" class="form-control" placeholder="Usuário">
                   </div>
                   <div class="form-group">
                      <label>Senha</label>
-                     <input type="password" class="form-control" placeholder="Password">
+                     <input type="password" class="form-control" placeholder="Senha">
                   </div>
-                  <button type="submit" class="btn btn-black">Acesse</button>
-                  <button type="submit" class="btn btn-secondary">Cadastre-se</button>
+                  <button type="submit" class="btn btn-black"><a class="btn-black" href="/">Acesse</a></button>
+                  <button type="submit" class="btn btn-black"><a class="btn-black" href="/register">Cadastre-se</a></button>
                </form>
             </div>
          </div>
