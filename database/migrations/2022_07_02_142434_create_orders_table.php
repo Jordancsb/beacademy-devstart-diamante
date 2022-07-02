@@ -18,6 +18,7 @@ return new class extends Migration
             $table->integer('client_id');
             $table->integer('product_id');
             $table->integer('productQuantity');
+            $table->string('status');
             $table->timestamps();
         });
     }

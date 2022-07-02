@@ -18,7 +18,9 @@ return new class extends Migration
             $table->string('name');
             $table->string('description');
             $table->integer('size');
-            $table->double('price');
+            $table->integer('quantity');
+            $table->double('sale_price');
+            $table->double('cost_price');
             $table->timestamps();
         });
     }
