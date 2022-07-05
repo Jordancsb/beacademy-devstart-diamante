@@ -21,6 +21,7 @@ protected $fillable = [
 protected $fillable = [
     'name',
     'description',
+    'image_url',
     'size',
     'quantity',
     'sale_price',
