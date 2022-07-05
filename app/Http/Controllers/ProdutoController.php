@@ -11,8 +11,9 @@ class ProdutoController extends Controller
         return view("pages.cadastro");
     }
 
+    
     public function cadastroProduto(Request $request){
         $produto = $request->all();
-      
+        dd($request);
     }
 }
