@@ -13,6 +13,6 @@ class ProdutoController extends Controller
 
     public function cadastroProduto(Request $request){
         $produto = $request->all();
-        dd($produto);
+      
     }
 }
