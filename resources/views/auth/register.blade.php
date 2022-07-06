@@ -5,8 +5,10 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link href="{{ '/css/app.css' }}" rel="stylesheet">
-	<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+	<link href="/css/app.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+		integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
 	<title>Login</title>
 </head>
 
@@ -16,7 +18,7 @@
 			<h2>Faça seu login</h2>
 			<p>Ainda não faz parte do nosso time! Registre-se agora!</p>
 		</div>
-		<img class="img" src="{{ URL::asset('/assets/logo.png') }}" alt="profile Pic" height="200" width="200">
+		<img class="img" src="./assets/logo.png" alt="profile Pic" height="200" width="200">
 	</div>
 	<div class="main">
 		<div class="col-md-6 col-sm-12">
