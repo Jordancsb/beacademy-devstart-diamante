@@ -21,14 +21,15 @@
       <div class="main">
          <div class="col-md-6 col-sm-12">
             <div class="login-form">
-               <form>
+               <form action="{{ route('auth.check')}}" method="post">
+                  @csrf
                   <div class="form-group">
                      <label>Usuário/Email</label>
-                     <input type="text" class="form-control" placeholder="Usuário">
+                     <input type="text" class="form-control" placeholder="Usuário" id="email" value="{{ old('email')}}">
                   </div>
                   <div class="form-group">
                      <label>Senha</label>
-                     <input type="password" class="form-control" placeholder="Senha">
+                     <input type="password" class="form-control" placeholder="Senha" id="password" value="{{ old('password')}}">
                   </div>
                   <button type="submit" class="btn btn-black"><a class="btn-black" href="/">Acesse</a></button>
                   <button type="submit" class="btn btn-black"><a class="btn-black" href="/register">Cadastre-se</a></button>

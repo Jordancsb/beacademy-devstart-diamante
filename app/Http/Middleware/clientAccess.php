@@ -17,7 +17,7 @@ class UserAccess
     public function handle(Request $request, Closure $next)
     {
         // If the user is authenticated and User is equal User
-        if(auth()->check() AND auth()->user()->user){
+        if(auth()->check() AND auth()->user()->client){
             return $next($request);
         }
         dd("Acesso negado, você é um cliente");
