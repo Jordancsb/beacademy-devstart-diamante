@@ -30,11 +30,11 @@
             </div>
             <div class="form-group">
                 <label for="sale_price">Preço de Venda</label>
-                <input type="number"  name="sale_price" id="sale_price" class="form-control" required>
+                <input type="number"  name="sale_price" id="sale_price" class="form-control" required step="0.01">
             </div>
             <div class="form-group">
                 <label for="cost_price">Preço de Custo</label>
-                <input type="number" name="cost_price" id="cost_price" class="form-control" required>
+                <input type="number" name="cost_price" id="cost_price" class="form-control" required step="0.01">
             </div>
             <button type="submit" class="btn btn-black">Cadastrar</button>
             <button type="submit" class="btn btn-black">Cancelar</button>
