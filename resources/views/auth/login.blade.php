@@ -22,20 +22,18 @@
 	</div>
 	<div class="main">
 		<div class="col-md-6 col-sm-12">
-			<div class="login-form">
-				<form>
-					<div class="form-group">
-						<label>Email</label>
-						<input type="text" class="form-control" placeholder="Email@email.com" name="email">
-					</div>
-					<div class="form-group">
-						<label>Senha</label>
-						<input type="password" class="form-control" placeholder="********" name="password">
-					</div>
-					<button type="submit" class="btn btn-black">Acesse</button>
-					<a class="btn btn-black" href="/register">Cadastre-se</a>
-				</form>
-			</div>
+			<form class="login-form" action="" method="POST">
+				<div class="form-group">
+					<label>Email</label>
+					<input type="text" class="form-control" placeholder="Email@email.com" name="email">
+				</div>
+				<div class="form-group">
+					<label>Senha</label>
+					<input type="password" class="form-control" placeholder="********" name="password">
+				</div>
+				<button type="submit" class="btn btn-black">Acesse</button>
+				<a class="btn btn-black" href="/register">Cadastre-se</a>
+			</form>
 		</div>
 	</div>
 
