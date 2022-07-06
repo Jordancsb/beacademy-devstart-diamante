@@ -23,6 +23,7 @@
 	<div class="main">
 		<div class="col-md-6 col-sm-12">
 			<form class="login-form" action="" method="POST">
+				@csrf
 				<div class="form-group">
 					<label>Email</label>
 					<input type="text" class="form-control" placeholder="Email@email.com" name="email" required>
