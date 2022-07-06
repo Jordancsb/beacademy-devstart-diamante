@@ -25,11 +25,11 @@
 				<form>
 					<div class="form-group">
 						<label>Email</label>
-						<input type="text" class="form-control" placeholder="Email@email.com">
+						<input type="text" class="form-control" placeholder="Email@email.com" name="email">
 					</div>
 					<div class="form-group">
 						<label>Senha</label>
-						<input type="password" class="form-control" placeholder="Senha">
+						<input type="password" class="form-control" placeholder="********" name="password">
 					</div>
 					<button type="submit" class="btn btn-black">Acesse</button>
 					<a class="btn btn-black" href="/register">Cadastre-se</a>
