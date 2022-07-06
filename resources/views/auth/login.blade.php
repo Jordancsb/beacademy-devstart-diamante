@@ -31,8 +31,8 @@
 						<label>Senha</label>
 						<input type="password" class="form-control" placeholder="Senha">
 					</div>
-					<button type="submit" class="btn btn-black"><a class="btn-black" href="/">Acesse</a></button>
-					<button type="submit" class="btn btn-black"><a class="btn-black" href="/register">Cadastre-se</a></button>
+					<button type="submit" class="btn btn-black">Acesse</button>
+					<a class="btn btn-black" href="/register">Cadastre-se</a>
 				</form>
 			</div>
 		</div>
