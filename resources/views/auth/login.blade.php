@@ -4,13 +4,8 @@
 
 @section('content')
 	<section>
-		<div class="sidenav">
-			<div class="login-main-text">
-				<h2>Faça seu login</h2>
-				<p>Ainda não faz parte do nosso time! Registre-se agora!</p>
-			</div>
-			<img class="img" src="./assets/logo.png" alt="profile Pic" height="200" width="200">
-		</div>
+		@include('partial.sidenav')
+
 		<div class="main">
 			<div class="col-md-6 col-sm-12">
 				<form class="login-form" action="" method="POST">
