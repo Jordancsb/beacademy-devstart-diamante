@@ -75,3 +75,8 @@ body {
   color: #fff !important;
   text-decoration: none;
 }
+
+/* CADASTRO PRODUTOS */
+.form-cadastro-produto {
+  width: 50vw;
+}

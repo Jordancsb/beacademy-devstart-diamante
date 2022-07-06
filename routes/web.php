@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProdutoController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 
@@ -37,3 +38,6 @@ Route::middleware(['user'])->group( function (){
         dd("Voce é um Usuario padrão");
     });
 });
+
+Route::get('/produto/cadastro',[ProdutoController::class,'cadastro']);
+Route::post('/produtos/cadastro',[ProdutoController::class,'cadastroProduto'])->name('cadastro');
