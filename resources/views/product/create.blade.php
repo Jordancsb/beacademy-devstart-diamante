@@ -1,4 +1,4 @@
-@extends('layout.modelo')
+@extends('template.default')
 
 @section('title', 'Cadastro de Produtos')
 
