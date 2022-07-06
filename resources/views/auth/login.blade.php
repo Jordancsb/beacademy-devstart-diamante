@@ -24,8 +24,8 @@
 			<div class="login-form">
 				<form>
 					<div class="form-group">
-						<label>Usuário/Email</label>
-						<input type="text" class="form-control" placeholder="Usuário">
+						<label>Email</label>
+						<input type="text" class="form-control" placeholder="Email@email.com">
 					</div>
 					<div class="form-group">
 						<label>Senha</label>
