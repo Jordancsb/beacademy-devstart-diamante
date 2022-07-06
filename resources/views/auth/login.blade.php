@@ -32,7 +32,7 @@
 					<input type="password" class="form-control" placeholder="********" name="password">
 				</div>
 				<button type="submit" class="btn btn-black">Acesse</button>
-				<a class="btn btn-black" href="/register">Cadastre-se</a>
+				<a class="btn btn-black" href="{{ route('register.page') }}">Cadastre-se</a>
 			</form>
 		</div>
 	</div>
