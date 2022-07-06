@@ -26,8 +26,8 @@ class ProductController extends Controller
         return redirect()->route('product.new');
     }
 
-    public function getListProduct() {
-        $products = DB::select('select * from products');
+    public function getListProducts() {
+        $products = Product::all();
         return view('product.list')->with('products',$products);
     }
 
