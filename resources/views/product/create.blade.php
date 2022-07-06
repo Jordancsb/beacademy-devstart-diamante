@@ -20,11 +20,11 @@
 			</div>
 			<div class="form-group">
 				<label for="size">Tamanho</label>
-				<input type="text" name="size" id="size" class="form-control" required>
+				<input type="number" name="size" id="size" class="form-control" required>
 			</div>
 			<div class="form-group">
 				<label for="quantity">Quantidade</label>
-				<input type="text" name="quantity" id="quantity" class="form-control" required>
+				<input type="number" name="quantity" id="quantity" class="form-control" required>
 			</div>
 			<div class="form-group">
 				<label for="sale_price">Preço de Venda</label>
