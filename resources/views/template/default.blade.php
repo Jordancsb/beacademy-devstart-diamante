@@ -26,6 +26,9 @@
 							<a class="nav-link " href="/login">Login</a>
 						</li>
 						<li class="nav-item">
+							<a class="nav-link " href="/produtos/store">Loja</a>
+						</li>
+						<li class="nav-item">
 							<a class="nav-link" href="/produto/cadastro">Cadastro de Produtos</a>
 						</li>
 						<li class="nav-item">
@@ -43,6 +46,8 @@
 
 	<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 	<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
 </body>
 
 </html>

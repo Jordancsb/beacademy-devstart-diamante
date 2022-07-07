@@ -80,3 +80,10 @@ body {
 .form-cadastro-produto {
   width: 50vw;
 }
+
+/* CARD PRODUTOS */
+.card-produtos {
+ display: flex;
+ flex-wrap: wrap;
+justify-content: center;
+}
