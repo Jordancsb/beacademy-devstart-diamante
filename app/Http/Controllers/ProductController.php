@@ -26,10 +26,11 @@ class ProductController extends Controller
         return redirect()->route('product.new');
     }
 
-    public function getlistProduct() {
+    public function getStoreProduct() {
         $products = Product::all();
-        return view('product.list')->with('products',$products);
+        return view('product.store')->with('products',$products);
     }
+
 
     public function cartProducts(Request $request, $id){
             // add the products that were selected by ID in one array

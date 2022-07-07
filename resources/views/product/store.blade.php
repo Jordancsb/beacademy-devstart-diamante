@@ -16,7 +16,7 @@
                     <p> <strong>Tamanho </strong> <span> <?php echo $product->size; ?> </span> </p>
                     <h3><strong>R$ </strong><?php echo $product->cost_price; ?></h3>
                     <form action="{{ route('product.card', $product->id) }}" method="post">
-                                                        {{-- send the id product for the controller --}}
+                                                     
                         <button type="submit" class="btn btn-dark" style="width: 100%;"> Carrinho </button>
                     </form>
                 </div>
