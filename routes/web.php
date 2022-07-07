@@ -10,14 +10,14 @@ use App\Http\Controllers\UserController;
 Route::get('/login', [UserController::class , 'login'])->name('login.page');
 Route::get('/register', [UserController::class , 'register'])->name('register.page');
 Route::get('/checkout', [UserController::class , 'checkout'])->name('checkout.page');
-Route::post('/auth', [UserController::class , 'auth'])->name('auth.user');
+Route::post('/auth', [UserController::class , 'postLoginAuth'])->name('auth.login');
 
 
 /** Middleware for redirect admin/users */
 Route::middleware(['admin'])->group(function () {
 
     Route::get('admin', function () { // all routes for the admin is put here
-    
+
             dd("Voce é um administrador");
         }
         );
@@ -26,8 +26,8 @@ Route::middleware(['admin'])->group(function () {
 Route::middleware(['user'])->group(function () {
 
     Route::get('user', function () { // all routes for the user is put here
-    
-            dd("Voce é um Usuario padrão");
+
+            dd("Voce é um Usuário padrão");
         }
         );
     });
