@@ -32,6 +32,6 @@ class ProductController extends Controller
     }
 
     public function cartProducts(Request $request, $id){
-            // add the products that were selected by ID
+            // add the products that were selected by ID in one array
     }
 }
