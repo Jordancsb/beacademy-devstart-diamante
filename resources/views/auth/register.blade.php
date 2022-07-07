@@ -8,7 +8,7 @@
 
 		<div class="main">
 			<div class="col-md-6 col-sm-12">
-				<form method="POST" class="register-form">
+				<form method="POST" class="register-form" action="{{ route('user.create') }}">
 					@csrf
 					<div class="form-group">
 						<label for="first-name">Nome</label>
@@ -26,16 +26,21 @@
 							   name="email">
 					</div>
 					<div class="form-group">
+						<label for="password">Senha</label>
+						<input required type="password" class="form-control" placeholder="********" id="password"
+							   name="password">
+					</div>
+					<div class="form-group">
 						<label for="phone">Telefone</label>
 						<input required type="text" class="form-control" placeholder="(00) 0 0000-0000"
-							   pattern="[0-9]"
+							   pattern="[0-9]+"
 							   size="13"
 							   maxlength="13" id="phone" name="phone">
 					</div>
 					<div class="form-group">
 						<label for="cpf">CPF</label>
 						<input required type="text" class="form-control" placeholder="000.000.000-00"
-							   pattern="[0-9]"
+							   pattern="[0-9]+"
 							   size="11" maxlength="11" id="cpf" name="cpf">
 					</div>
 					<div class="form-group">
@@ -45,7 +50,7 @@
 					</div>
 					<div class="form-group">
 						<label for="cep">CEP</label>
-						<input required type="text" class="form-control" placeholder="00000-000" pattern="[0-9]"
+						<input required type="text" class="form-control" placeholder="00000-000" pattern="[0-9]+"
 							   size="8"
 							   maxlength="8" id="cep"
 							   name="cep">
