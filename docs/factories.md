@@ -35,17 +35,23 @@ return [
 ];
 ```
 
-### ClientFactory.php
+### UserFactory.php
 
 ```php
 return [
-    'cpf' => $this->faker->numberBetween(10000000000, 99999999999),
     'first_name' => $this->faker->firstName(),
     'last_name' => $this->faker->lastName(),
-    'email' => $this->faker->email(),
+    'birth_date' => $this->faker->date(),
     'phone' => $this->faker->phoneNumber(),
-    'login' => $this->faker->userName(),
-    'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi' // password
+    'address' => $this->faker->address(),
+
+    'cpf' => $this->faker->unique()->numberBetween(10000000000, 99999999999),
+    'email' => $this->faker->unique()->safeEmail(),
+    
+    'email_verified_at' => now(),
+    'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+    'remember_token' => Str::random(10),
+    /* put column user and admin with the expect value?*/
 ];
 ```
 

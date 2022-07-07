@@ -2,18 +2,6 @@
 
 ## Código
 
-### Order
-
-```php
-// Campos preenchíveis
-protected $fillable = [
-    'client_id',
-    'product_id',
-    'product_quantity',
-    'status'
-];
-```
-
 ### Product
 
 ```php
@@ -29,33 +17,59 @@ protected $fillable = [
 ];
 ```
 
-### Client
+### User
 
 ```php
-// Campos preenchíveis
 protected $fillable = [
-    'cpf',
     'first_name',
     'last_name',
-    'email',
+    'birth_date',
     'phone',
-    'login',
-    'password'
+    'address',
+    'cpf',
+    'email',
+    'password',
+    'admin',
+    'user'
 ];
 
-// Accessor para o nome completo ($full_name)
-public function getFullNameAttribute()
-{
-    return "${$this->first_name} ${$this->last_name}";
-}
-
-// Anexo do nome completo ($full_name) a representação array
 protected $appends = [
     'full_name'
 ];
 
-// Propriedades ocultas na tratativa da classe como array
+/**
+ * The attributes that should be hidden for serialization.
+ *
+ * @var array<int, string>
+ */
 protected $hidden = [
-    'password'
+    'password',
+    'remember_token',
+];
+
+/**
+ * The attributes that should be cast.
+ *
+ * @var array<string, string>
+ */
+protected $casts = [
+    'email_verified_at' => 'datetime',
+];
+
+public function getFullNameAttribute()
+{
+    return "{$this->first_name} {$this->last_name}";
+}
+```
+
+### Order
+
+```php
+// Campos preenchíveis
+protected $fillable = [
+    'client_id',
+    'product_id',
+    'product_quantity',
+    'status'
 ];
 ```
