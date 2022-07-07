@@ -9,6 +9,7 @@
         <div class="main">
             <div class="col-md-6 col-sm-12">
                 <form class="login-form" action="{{ route('auth.login') }}" method="POST">
+                    @include('partial.error')
                     @csrf
                     <div class="form-group">
                         <label for="email">Email</label>

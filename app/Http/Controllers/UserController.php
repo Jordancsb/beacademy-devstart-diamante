@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UserLoginFormRequest;
 use App\Models\User;
-use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
@@ -22,7 +22,7 @@ class UserController extends Controller
         return view('auth.checkout');
     }
 
-    public function postLoginAuth(Request $req)
+    public function postLoginAuth(UserLoginFormRequest $req)
     {
         $queryParams = $req->only('email', 'password');
 
