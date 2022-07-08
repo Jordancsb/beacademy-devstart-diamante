@@ -14,7 +14,7 @@
 					<a class="nav-link" href="/produto/cadastro">Cadastro de Produtos</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link " href="/carrinho">Pedidos</a>
+					<a class="nav-link " href="/cart">Pedidos</a>
 				</li>
 			</ul>
 		</div>

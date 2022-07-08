@@ -41,4 +41,4 @@ Route::get('/produtos/store',[ProductController::class, 'getStoreProduct'])->nam
 Route::post('/produtos/store',[ProductController::class,'product.card'])->name('product.card');
 
 //Carrinho
-Route::get('/carrinho',[CarrinhoController::class,'index'])->name('carrinho.index'); 
+Route::get('/cart',[CarrinhoController::class,'index'])->name('cart.index'); 
