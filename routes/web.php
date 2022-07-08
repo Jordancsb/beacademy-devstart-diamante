@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CarrinhoController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
@@ -38,3 +39,6 @@ Route::post('/produtos/cadastro', [ProductController::class , 'postCreateNewProd
 // Route store
 Route::get('/produtos/store',[ProductController::class, 'getStoreProduct'])->name('product.store');
 Route::post('/produtos/store',[ProductController::class,'product.card'])->name('product.card');
+
+//Carrinho
+Route::get('/carrinho',[CarrinhoController::class,'index'])->name('carrinho.index'); 
