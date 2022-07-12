@@ -13,7 +13,7 @@ class ProductController extends Controller
     }
 
     public function getNewProductPage()
-    {
+    {   
         return view("product.create");
     }
 
@@ -34,5 +34,44 @@ class ProductController extends Controller
 
     public function cartProducts(Request $request, $id){
             // add the products that were selected by ID in one array
+    }
+
+    public function details()
+    {   
+        $products = Product::all();
+        return view('product.details')->with('products', $products);
+    }
+
+    public function edit($id)
+    {   
+        if (!$product = Product::find($id)) {
+            return redirect()->route('product.details');
+        }
+
+        return view('product.edit', compact('product'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        if (!$product = $this->model->find($id)) {
+            return redirect()->route('product.details');
+        }
+
+        $data = $request->all();
+
+        $product->update($data);
+
+        return redirect()->route('product.details');
+    }
+
+    public function delete($id)
+    { 
+        if (!$product = $this->model->find($id)) {
+            return redirect()->route('product.details');
+        }
+
+        $product->delete();
+
+        return redirect()->route('product.details');
     }
 }

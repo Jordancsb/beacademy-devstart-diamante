@@ -36,5 +36,9 @@ Route::get('/produto/cadastro', [ProductController::class , 'getNewProductPage']
 Route::post('/produtos/cadastro', [ProductController::class , 'postCreateNewProduct'])->name('products.create');
 
 // Route store
-Route::get('/produtos/store',[ProductController::class, 'getStoreProduct'])->name('product.store');
-Route::post('/produtos/store',[ProductController::class,'product.card'])->name('product.card');
+Route::get('/produtos/store', [ProductController::class, 'getStoreProduct'])->name('product.store');
+Route::post('/produtos/store', [ProductController::class,'product.card'])->name('product.card');
+Route::get('/produtos/detalhes', [ProductController::class, 'details'])->name('product.details');
+Route::delete('/produtos/{id}', [ProductController::class, 'delete'])->name('product.delete');
+Route::put('/produtos/{id}', [ProductController::class, 'update'])->name('product.update');
+Route::get('/produtos/{id}/edit', [ProductController::class, 'edit'])->name('product.edit');
