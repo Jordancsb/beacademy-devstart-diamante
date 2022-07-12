@@ -9,7 +9,8 @@
 		<div class="main">
 			<div class="col-md-6 col-sm-12">
 				<div class="register-form">
-					<form>
+					<form action="" method="POST">
+						@csrf
 						<div class="form-group">
 							<label>Nome Completo</label>
 							<input type="text" class="form-control" placeholder="Nome Completo">
