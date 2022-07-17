@@ -13,7 +13,7 @@
             </form>
         </div>
         <div class="row gy-3">
-            <?php foreach($products as $product): ?>
+            @foreach ($products as $product)
             <div class="col-md-6 mb-3">
                 <div class="card mb-3 h-100" style="max-width: 540px;">
                     <div class="row ">
@@ -51,7 +51,7 @@
                 </div>
 
             </div>
-            <?php endforeach ?>
+            @endforeach
         </div>
 
 
