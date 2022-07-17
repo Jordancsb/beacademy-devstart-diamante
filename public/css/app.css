@@ -14,7 +14,9 @@ body {
   overflow-x: hidden;
   padding-top: 20px;
 }
-
+.navbar-dark .navbar-nav .nav-link {
+  color: #FFF !important;
+}
 .img {
   margin-left: 130px;
 }

@@ -13,8 +13,8 @@ class ProductController extends Controller
     }
 
     public function getNewProductPage()
-    {   
-        return view("product.create");
+    { 
+       return view("product.create");
     }
 
     public function postCreateNewProduct(Request $req)
@@ -26,9 +26,11 @@ class ProductController extends Controller
         return redirect()->route('product.new');
     }
 
-    public function getStoreProduct() {
-        $products = Product::all();
-        return view('product.store')->with('products',$products);
+    public function getStoreProduct(Request $request) {
+        $products = $this->model->getProducts(
+            $request->search ?? ''
+        );
+        return  view('product.store', compact('products'));
     }
 
 
