@@ -20,13 +20,14 @@ return new class extends Migration {
 
 			$table->string('phone');
 
-			$table->string('birth_date')->nullable();
+			$table->date('birth_date')->nullable();
 			$table->text('address')->nullable();
-			$table->integer('cep')->nullable();
+			$table->string('cep')->nullable();
 			$table->timestamp('email_verified_at')->nullable();
 
 			$table->string('cpf')->unique();
 			$table->string('email')->unique();
+
 			$table->string('password');
 			$table->boolean('admin')->default(false);
 
