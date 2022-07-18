@@ -22,13 +22,14 @@ class User extends Authenticatable
 		'birth_date',
 		'phone',
 		'address',
+		'cep',
 		'cpf',
 		'email',
 		'password',
 		'admin',
 		'user'
 	];
-	
+
 	protected $appends = [
 		'full_name'
 	];
@@ -50,10 +51,16 @@ class User extends Authenticatable
 	 */
 	protected $casts = [
 		'email_verified_at' => 'datetime',
+		'admin' => 'boolean'
 	];
 
 	public function getFullNameAttribute()
 	{
 		return "{$this->first_name} {$this->last_name}";
+	}
+
+	public function orders()
+	{
+		return $this->hasMany(Order::class);
 	}
 }
