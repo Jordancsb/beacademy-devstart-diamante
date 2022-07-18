@@ -4,10 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\UserLoginFormRequest;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Request;
 
 class UserController extends Controller
 {
+	public function __construct(private User $user)
+	{
+	}
+
 	function getLoginPage()
 	{
 		return view('auth.login');
@@ -25,20 +30,25 @@ class UserController extends Controller
 
 	public function postLoginAuth(UserLoginFormRequest $req)
 	{
-		$queryParams = $req->only('email', 'password');
+		$credentials = $req->only('email', 'password');
 
-		$user = User::where('email', $queryParams['email'])->get()[0] ?? null;
+		if (Auth::attempt($credentials))
+			return redirect()->intended('/login');
 
-		if ($user && password_verify($queryParams['password'], $user->password))
-			dd('authenticated');
-
-		dd('not authenticated');
+		return redirect()->back();
 	}
 
 	public function postNewUser(Request $req)
 	{
 		$data = $req->all();
 
-		User::create($data);
+		$this->create($data);
+	}
+
+	public function getLogout()
+	{
+		Auth::logout();
+
+		return redirect()->route('login.page');
 	}
 }
