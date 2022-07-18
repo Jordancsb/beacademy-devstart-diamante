@@ -33,23 +33,35 @@ class UserController extends Controller
 		$credentials = $req->only('email', 'password');
 
 		if (Auth::attempt($credentials))
-			dd(Auth::user()->first_name);
-		// return redirect()->intended('/login');
+			return redirect()->intended('/produto/cadastro');
 
 		return redirect()->back();
 	}
 
 	public function postNewUser(Request $req)
 	{
-		$data = $req->all();
+		$data = $req->only(
+			'first_name',
+			'last_name',
+			'email',
+			'phone',
+			'cpf',
+			'birth_date',
+			'cep',
+			'address'
+		);
 
-		$this->create($data);
+		$data['password'] = bcrypt($req->password);
+
+		$this->user->create($data);
+
+		return redirect()->route('login.page');
 	}
 
 	public function getLogout()
 	{
 		Auth::logout();
 
-		return redirect()->route('login.page');
+		return redirect()->route('login');
 	}
 }
