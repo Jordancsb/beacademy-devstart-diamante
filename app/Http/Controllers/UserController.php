@@ -33,7 +33,8 @@ class UserController extends Controller
 		$credentials = $req->only('email', 'password');
 
 		if (Auth::attempt($credentials))
-			return redirect()->intended('/login');
+			dd(Auth::user()->first_name);
+		// return redirect()->intended('/login');
 
 		return redirect()->back();
 	}
