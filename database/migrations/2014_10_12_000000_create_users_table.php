@@ -22,6 +22,7 @@ return new class extends Migration {
 
 			$table->string('birth_date')->nullable();
 			$table->text('address')->nullable();
+			$table->integer('cep')->nullable();
 			$table->timestamp('email_verified_at')->nullable();
 
 			$table->string('cpf')->unique();
