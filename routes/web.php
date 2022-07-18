@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -19,7 +20,10 @@ Route::middleware(['auth'])->group(function () {
 	Route::get('/produto/cadastro', [ProductController::class , 'getNewProductPage'])->name('product.new');
 	Route::post('/produtos/cadastro', [ProductController::class , 'postCreateNewProduct'])->name('products.create');
 
-	// Route store
-	Route::get('/produtos/store', [ProductController::class , 'listProduct'])->name('product.list');
-	Route::post('/produtos/store', [ProductController::class , 'product.card'])->name('product.card');
+	Route::get('/produtos/store', [ProductController::class, 'getStoreProduct'])->name('product.store');
+  Route::post('/produtos/store', [ProductController::class,'cartProducts'])->name('product.cart');
+  Route::get('/produtos/detalhes', [ProductController::class, 'details'])->name('product.details');
+  Route::delete('/produtos/{id}', [ProductController::class, 'delete'])->name('product.delete');
+  Route::put('/produtos/{id}', [ProductController::class, 'update'])->name('product.update');
+  Route::get('/produtos/{id}/edit', [ProductController::class, 'edit'])->name('product.edit');
 });

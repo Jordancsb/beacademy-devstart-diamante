@@ -3,7 +3,8 @@
 @section('title', 'Cadastro de Produtos')
 
 @section('content')
-	<section class="container d-flex mt-4 ">
+<section class="container d-flex mt-4 ">
+		
 		<form action="{{ route('products.create') }}" class="form-cadastro-produto" method="POST">
 			@csrf
 			<div class="form-group">
