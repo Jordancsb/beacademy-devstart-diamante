@@ -5,7 +5,6 @@
 ### Product
 
 ```php
-// Campos preenchíveis
 protected $fillable = [
     'name',
     'description',
@@ -15,6 +14,11 @@ protected $fillable = [
     'sale_price',
     'cost_price'
 ];
+
+public function orders()
+{
+    return $this->hasMany(Order::class);
+}
 ```
 
 ### User
@@ -26,6 +30,7 @@ protected $fillable = [
     'birth_date',
     'phone',
     'address',
+    'cep',
     'cpf',
     'email',
     'password',
@@ -37,39 +42,44 @@ protected $appends = [
     'full_name'
 ];
 
-/**
- * The attributes that should be hidden for serialization.
- *
- * @var array<int, string>
- */
 protected $hidden = [
     'password',
     'remember_token',
 ];
 
-/**
- * The attributes that should be cast.
- *
- * @var array<string, string>
- */
 protected $casts = [
     'email_verified_at' => 'datetime',
+    'admin' => 'boolean'
 ];
 
 public function getFullNameAttribute()
 {
     return "{$this->first_name} {$this->last_name}";
 }
+
+public function orders()
+{
+    return $this->hasMany(Order::class);
+}
 ```
 
 ### Order
 
 ```php
-// Campos preenchíveis
 protected $fillable = [
     'client_id',
     'product_id',
     'product_quantity',
     'status'
 ];
+
+public function user()
+{
+    return $this->belongsTo(User::class);
+}
+
+public function product()
+{
+    $this->belongsTo(Product::class);
+}
 ```
