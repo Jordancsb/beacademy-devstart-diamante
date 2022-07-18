@@ -25,12 +25,12 @@ class UserFactory extends Factory
 			'address' => $this->faker->address(),
 
 			'cpf' => $this->faker->unique()->numberBetween(10000000000, 99999999999),
+			'cep' => $this->faker->numberBetween(10000000, 99999999),
 			'email' => $this->faker->unique()->safeEmail(),
 
 			'email_verified_at' => now(),
 			'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
 			'remember_token' => Str::random(10),
-			/* put column user and admin with the expect value?*/
 		];
 	}
 
