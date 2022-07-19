@@ -55,7 +55,7 @@ class UserController extends Controller
 
 		$this->user->create($data);
 
-		return redirect()->route('login.page');
+		return redirect()->route('login');
 	}
 
 	public function getLogout()

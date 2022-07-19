@@ -50,7 +50,7 @@
 						<input required type="text" class="form-control" placeholder="Endereço" id="address" name="address">
 					</div>
 					<button type="submit" class="btn btn-black">Cadastrar</button>
-					<a class="btn btn-black" href="{{ route('login.page') }}">Voltar</a>
+					<a class="btn btn-black" href="{{ route('login') }}">Voltar</a>
 				</form>
 			</div>
 		</div>
