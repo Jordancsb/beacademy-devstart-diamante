@@ -4,8 +4,9 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
-class AdminAccess
+class IsAdmin
 {
     /**
      * Handle an incoming request.
@@ -16,10 +17,9 @@ class AdminAccess
      */
     public function handle(Request $request, Closure $next)
     {
-        // If the user is authenticated and User is equal Admin
-        if(auth()->check() AND auth()->user()->admin){
+        if (Auth::user()->admin)
             return $next($request);
-        }
-        dd("Acesso negado, você é um cliente");
+
+        return redirect()->route('product.store');
     }
 }
