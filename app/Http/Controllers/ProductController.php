@@ -13,39 +13,41 @@ class ProductController extends Controller
     }
 
     public function getNewProductPage()
-    { 
-       return view("product.create");
+    {
+        return view("product.create");
     }
 
-    public function postCreateNewProduct(Request $req)
+    public function postNewProduct(Request $req)
     {
         $data = $req->only('name', 'description', 'image_url', 'size', 'quantity', 'sale_price', 'cost_price');
 
         $this->model->create($data);
 
-        return redirect()->route('product.new');
+        return redirect()->route('product.details');
     }
 
-    public function getStoreProduct(Request $request) {
+    public function getStorePage(Request $request)
+    {
         $products = $this->model->getProducts(
             $request->search ?? ''
         );
-        return  view('product.store', compact('products'));
+        return view('product.store', compact('products'));
     }
 
 
-    public function cartProducts(Request $request, $id){
-            // add the products that were selected by ID in one array
+    public function postProductToCart(Request $request, $id)
+    {
+    // add the products that were selected by ID in one array
     }
 
-    public function details()
-    {   
+    public function getListPage()
+    {
         $products = Product::all();
         return view('product.details')->with('products', $products);
     }
 
-    public function edit($id)
-    {   
+    public function getEditPage($id)
+    {
         if (!$product = Product::find($id)) {
             return redirect()->route('product.details');
         }
@@ -53,7 +55,7 @@ class ProductController extends Controller
         return view('product.edit', compact('product'));
     }
 
-    public function update(Request $request, $id)
+    public function putProduct(Request $request, $id)
     {
         if (!$product = $this->model->find($id)) {
             return redirect()->route('product.details');
@@ -66,8 +68,8 @@ class ProductController extends Controller
         return redirect()->route('product.details');
     }
 
-    public function delete($id)
-    { 
+    public function deleteProduct($id)
+    {
         if (!$product = $this->model->find($id)) {
             return redirect()->route('product.details');
         }

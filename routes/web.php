@@ -15,20 +15,20 @@ Route::get('/logout', [UserController::class , 'getLogout'])->name('logout');
 
 Route::post('/users/create', [UserController::class , 'postNewUser'])->name('users.create');
 
-Route::get('/', [ProductController::class , 'getStoreProduct'])->name('product.store');
+Route::get('/', [ProductController::class , 'getStorePage'])->name('product.store');
 
 // Logged only access
 Route::middleware(['auth'])->group(function () {
-	Route::post('/loja', [ProductController::class , 'cartProducts'])->name('product.cart');
+	Route::post('/loja', [ProductController::class , 'postProductToCart'])->name('product.cart');
 });
 
 // Admin only access
 Route::middleware(['auth', 'admin'])->group(function () {
-	Route::get('/produtos/gerenciar', [ProductController::class , 'details'])->name('product.details');
+	Route::get('/produtos/gerenciar', [ProductController::class , 'getListPage'])->name('product.details');
 	Route::get('/produtos/cadastro', [ProductController::class , 'getNewProductPage'])->name('product.new');
-	Route::get('/produtos/{id}/edit', [ProductController::class , 'edit'])->name('product.edit');
+	Route::get('/produtos/{id}/edit', [ProductController::class , 'getEditPage'])->name('product.edit');
 
-	Route::post('/products', [ProductController::class , 'postCreateNewProduct'])->name('products.create');
-	Route::delete('/products/{id}', [ProductController::class , 'delete'])->name('products.delete');
-	Route::put('/products/{id}', [ProductController::class , 'update'])->name('products.update');
+	Route::post('/products', [ProductController::class , 'postNewProduct'])->name('products.create');
+	Route::delete('/products/{id}', [ProductController::class , 'deleteProduct'])->name('products.delete');
+	Route::put('/products/{id}', [ProductController::class , 'putProduct'])->name('products.update');
 });
