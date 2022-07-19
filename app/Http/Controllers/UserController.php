@@ -33,7 +33,7 @@ class UserController extends Controller
 		$credentials = $req->only('email', 'password');
 
 		if (Auth::attempt($credentials))
-			return redirect()->intended('/loja');
+			return redirect()->intended('/produto/cadastro');
 
 		return redirect()->back();
 	}
@@ -55,7 +55,7 @@ class UserController extends Controller
 
 		$this->user->create($data);
 
-		return redirect()->route('login');
+		return redirect()->route('login.page');
 	}
 
 	public function getLogout()

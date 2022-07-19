@@ -3,27 +3,28 @@
 @section('title', 'Login')
 
 @section('content')
-	<section>
-		@include('partial.sidenav', ['text' => 'Ainda não faz parte do nosso time! Registre-se agora!'])
+    <section>
+        @include('partial.sidenav')
 
-		<div class="main">
-			<div class="col-md-6 col-sm-12">
-				<form class="login-form" action="{{ route('auth.login') }}" method="POST">
-					@include('partial.error')
-					@csrf
-					<div class="mb-3">
-						<label for="email" class="form-label">Email</label>
-						<input type="email" class="form-control" id="email" aria-describedby="emailHelp" name="email">
-						<div id="emailHelp" class="form-text">Ainda não possui cadastro? Clique abaixo e inscreva-se!</div>
-					</div>
-					<div class="mb-3">
-						<label for="password" class="form-label">Senha</label>
-						<input type="password" class="form-control" id="password" name="password">
-					</div>
-					<button type="submit" class="btn btn-dark">Entrar</button>
-					<a class="btn btn-outline-dark" href="{{ route('register.page') }}">Cadastre-se</a>
-				</form>
-			</div>
-		</div>
-	</section>
+        <div class="main">
+            <div class="col-md-6 col-sm-12">
+                <form class="login-form" action="{{ route('auth.login') }}" method="POST">
+                    @include('partial.error')
+                    @csrf
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="text" class="form-control" placeholder="Email@email.com" id="email" name="email"
+                               required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Senha</label>
+                        <input type="password" class="form-control" placeholder="********" id="password" name="password"
+                               required>
+                    </div>
+                    <button type="submit" class="btn btn-black">Acesse</button>
+                    <a class="btn btn-black" href="{{ route('register.page') }}">Cadastre-se</a>
+                </form>
+            </div>
+        </div>
+    </section>
 @endsection
