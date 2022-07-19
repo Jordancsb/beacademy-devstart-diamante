@@ -19,7 +19,6 @@ class Product extends Model
         'cost_price'
     ];
 
-
     public function getProducts(string $search = null)
     {
         $products = $this->where( function ($query) use ($search){
