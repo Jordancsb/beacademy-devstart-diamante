@@ -13,7 +13,7 @@
 	<title>@yield('title')</title>
 </head>
 
-<body>
+<body style="background-color: #fefefe;">
 	<header>
 		@includeWhen($navbar ?? true, 'partial.navbar')
 	</header>
