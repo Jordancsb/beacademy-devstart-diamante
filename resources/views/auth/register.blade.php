@@ -8,7 +8,9 @@
 
 		<div class="main">
 			<div class="col-md-8 col-sm-12">
+
 				<form method="POST" class="register-form" action="{{ route('users.create') }}">
+					<h1 class="mb-3">Preencha os dados</h1>
 					@include('partial.error')
 					@csrf
 
@@ -54,7 +56,7 @@
 							size="8" maxlength="8" id="cep" name="cep">
 					</div>
 
-					<div class="input-group flex-nowrap mb-2">
+					<div class="input-group flex-nowrap mb-3">
 						<span class="input-group-text" id="address">Endereço</span>
 						<input aria-describedby="address" required type="text" class="form-control" placeholder="Endereço"
 							id="address" name="address">
