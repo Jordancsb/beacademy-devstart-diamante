@@ -1,6 +1,6 @@
 <div class="sidenav">
 	<div class="login-main-text">
-		<h2>Time Diamante</h2>
+		<h1>Time Diamante</h1>
 		<p>{{ $text ?? 'Nenhum texto.' }}</p>
 	</div>
 	{{-- <img class="img" src="./assets/logo.png" alt="profile Pic" height="200" width="200"> --}}
