@@ -20,10 +20,11 @@ Route::middleware(['auth'])->group(function () {
 	Route::get('/produto/cadastro', [ProductController::class , 'getNewProductPage'])->name('product.new');
 	Route::post('/produtos/cadastro', [ProductController::class , 'postCreateNewProduct'])->name('products.create');
 
-	Route::get('/produtos/store', [ProductController::class, 'getStoreProduct'])->name('product.store');
-  Route::post('/produtos/store', [ProductController::class,'cartProducts'])->name('product.cart');
-  Route::get('/produtos/detalhes', [ProductController::class, 'details'])->name('product.details');
-  Route::delete('/produtos/{id}', [ProductController::class, 'delete'])->name('product.delete');
-  Route::put('/produtos/{id}', [ProductController::class, 'update'])->name('product.update');
-  Route::get('/produtos/{id}/edit', [ProductController::class, 'edit'])->name('product.edit');
+	// Route store
+	Route::get('/loja', [ProductController::class, 'getStoreProduct'])->name('product.store');
+	Route::post('/loja', [ProductController::class,'cartProducts'])->name('product.cart');
+	Route::get('/produtos/detalhes', [ProductController::class, 'details'])->name('product.details');
+	Route::delete('/produtos/{id}', [ProductController::class, 'delete'])->name('product.delete');
+	Route::put('/produtos/{id}', [ProductController::class, 'update'])->name('product.update');
+	Route::get('/produtos/{id}/edit', [ProductController::class, 'edit'])->name('product.edit');
 });

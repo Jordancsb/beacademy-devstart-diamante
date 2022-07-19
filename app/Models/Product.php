@@ -23,4 +23,17 @@ class Product extends Model
 	{
 		return $this->hasMany(Order::class);
 	}
+
+	public function getProducts(string $search = null)
+    {
+        $products = $this->where( function ($query) use ($search){
+            if($search)
+            {
+                $query->where('name','LIKE',"%{$search}%");
+                $query->orWhere('size',$search);
+            }
+        })
+        ->paginate(5);
+        return $products;
+    }
 }
