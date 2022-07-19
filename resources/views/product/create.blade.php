@@ -46,7 +46,7 @@
 					<input type="number" name="cost_price" id="cost_price" class="form-control" required step="0.01">
 				</div>
 			</div>
-			<button type="submit" class="btn btn-outline-dark">Cancelar</button>
+			<a href="{{ url()->previous() }}" class="btn btn-outline-dark">Voltar</a>
 			<button type="submit" class="btn btn-dark">Cadastrar</button>
 		</form>
 	</section>
