@@ -11,9 +11,11 @@
 					<li class="nav-item">
 						<a class="nav-link active" aria-current="page" href="{{ route('product.store') }}">Loja</a>
 					</li>
+
 					<li class="nav-item">
 						<a class="nav-link" href="#">Carrinho</a>
 					</li>
+
 					@if (Auth::user()->admin)
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
@@ -21,11 +23,12 @@
 								Gerenciar
 							</a>
 							<ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-								<li><a class="dropdown-item" href="{{ route('product.new') }}">Cadastrar Produto</a></li>
-								<li><a class="dropdown-item" href="#">Another action</a></li>
+								<li><a class="dropdown-item" href="{{ route('product.details') }}">Produtos</a></li>
+								<li><a class="dropdown-item" href="#">Usuários</a></li>
 							</ul>
 						</li>
 					@endif
+
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
 							data-bs-toggle="dropdown" aria-expanded="false">
@@ -40,6 +43,7 @@
 					<li class="nav-item">
 						<a class="nav-link active" aria-current="page" href="{{ route('login') }}">Entrar</a>
 					</li>
+
 					<li class="nav-item">
 						<a class="nav-link" href="{{ route('register.page') }}">Cadastrar</a>
 					</li>
