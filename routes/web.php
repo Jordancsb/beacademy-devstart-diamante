@@ -24,8 +24,8 @@ Route::middleware(['auth'])->group(function () {
 
 // Admin only access
 Route::middleware(['auth', 'admin'])->group(function () {
+	Route::get('/produtos/gerenciar', [ProductController::class , 'details'])->name('product.details');
 	Route::get('/produtos/cadastro', [ProductController::class , 'getNewProductPage'])->name('product.new');
-	Route::get('/produtos/detalhes', [ProductController::class , 'details'])->name('product.details');
 	Route::get('/produtos/{id}/edit', [ProductController::class , 'edit'])->name('product.edit');
 
 	Route::post('/products', [ProductController::class , 'postCreateNewProduct'])->name('products.create');
