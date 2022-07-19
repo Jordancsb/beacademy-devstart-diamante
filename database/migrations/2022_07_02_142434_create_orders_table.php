@@ -16,11 +16,8 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
 
-            $table->integer('client_id')->unsigned();
-            $table->integer('product_id')->unsigned();
-
-            $table->foreign('client_id')->references('id')->on('clients')->onDelete('CASCADE');
-            $table->foreign('product_id')->references('id')->on('products')->onDelete('CASCADE');
+            $table->foreignId('user_id')->constrained('users')->onDelete('CASCADE')->onUpdate('CASCADE');
+            $table->foreignId('product_id')->constrained('products')->onDelete('CASCADE')->onUpdate('CASCADE');
 
             $table->integer('product_quantity');
             $table->string('status');

@@ -4,33 +4,64 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\UserLoginFormRequest;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use Symfony\Component\HttpFoundation\Request;
 
 class UserController extends Controller
 {
-    function login()
-    {
-        return view('auth.login');
-    }
+	public function __construct(private User $user)
+	{
+	}
 
-    function register()
-    {
-        return view('auth.register');
-    }
+	function getLoginPage()
+	{
+		return view('auth.login');
+	}
 
-    function checkout()
-    {
-        return view('auth.checkout');
-    }
+	function getRegisterPage()
+	{
+		return view('auth.register');
+	}
 
-    public function postLoginAuth(UserLoginFormRequest $req)
-    {
-        $queryParams = $req->only('email', 'password');
+	function checkout()
+	{
+		return view('auth.checkout');
+	}
 
-        $user = User::where('email', $queryParams['email'])->get()[0] ?? null;
+	public function postLoginAuth(UserLoginFormRequest $req)
+	{
+		$credentials = $req->only('email', 'password');
 
-        if ($user && password_verify($queryParams['password'], $user->password))
-            dd('authenticated');
+		if (Auth::attempt($credentials))
+			return redirect()->intended('/produto/cadastro');
 
-        dd('not authenticated');
-    }
+		return redirect()->back();
+	}
+
+	public function postNewUser(Request $req)
+	{
+		$data = $req->only(
+			'first_name',
+			'last_name',
+			'email',
+			'phone',
+			'cpf',
+			'birth_date',
+			'cep',
+			'address'
+		);
+
+		$data['password'] = bcrypt($req->password);
+
+		$this->user->create($data);
+
+		return redirect()->route('login.page');
+	}
+
+	public function getLogout()
+	{
+		Auth::logout();
+
+		return redirect()->route('login');
+	}
 }
