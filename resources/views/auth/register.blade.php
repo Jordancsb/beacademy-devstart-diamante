@@ -60,8 +60,8 @@
 							id="address" name="address">
 					</div>
 
-					<a class="btn btn-outline-black" href="{{ route('login') }}">Voltar</a>
-					<button type="submit" class="btn btn-black">Cadastrar</button>
+					<a class="btn btn-outline-dark" href="{{ route('login') }}">Voltar</a>
+					<button type="submit" class="btn btn-dark">Cadastrar</button>
 				</form>
 			</div>
 		</div>

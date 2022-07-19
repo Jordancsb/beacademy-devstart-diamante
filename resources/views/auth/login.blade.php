@@ -20,8 +20,8 @@
 						<label for="password" class="form-label">Senha</label>
 						<input type="password" class="form-control" id="password" name="password">
 					</div>
-					<button type="submit" class="btn btn-black">Entrar</button>
-					<a class="btn btn-outline-black" href="{{ route('register.page') }}">Cadastre-se</a>
+					<button type="submit" class="btn btn-dark">Entrar</button>
+					<a class="btn btn-outline-dark" href="{{ route('register.page') }}">Cadastre-se</a>
 				</form>
 			</div>
 		</div>
