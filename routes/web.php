@@ -18,17 +18,13 @@ Route::post('/users/create', [UserController::class , 'postNewUser'])->name('use
 
 Route::middleware(['auth'])->group(function () {
 	Route::get('/produto/cadastro', [ProductController::class , 'getNewProductPage'])->name('product.new');
-
-	Route::post('/products/create', [ProductController::class , 'postCreateNewProduct'])->name('products.create');
+	Route::post('/produtos/cadastro', [ProductController::class , 'postCreateNewProduct'])->name('products.create');
 
 	// Route store
-	Route::get('/loja', [ProductController::class , 'getStoreProduct'])->name('product.store');
-	Route::post('/loja', [ProductController::class , 'cartProducts'])->name('product.cart');
-
-	Route::get('/produtos/detalhes', [ProductController::class , 'details'])->name('product.details');
-
-	Route::delete('/products/{id}', [ProductController::class , 'delete'])->name('product.delete');
-	Route::put('/products/{id}', [ProductController::class , 'update'])->name('product.update');
-
-	Route::get('/produtos/{id}/edit', [ProductController::class , 'edit'])->name('product.edit');
+	Route::get('/loja', [ProductController::class, 'getStoreProduct'])->name('product.store');
+	Route::post('/loja', [ProductController::class,'cartProducts'])->name('product.cart');
+	Route::get('/produtos/detalhes', [ProductController::class, 'details'])->name('product.details');
+	Route::delete('/produtos/{id}', [ProductController::class, 'delete'])->name('product.delete');
+	Route::put('/produtos/{id}', [ProductController::class, 'update'])->name('product.update');
+	Route::get('/produtos/{id}/edit', [ProductController::class, 'edit'])->name('product.edit');
 });
