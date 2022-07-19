@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\CartController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -18,18 +17,18 @@ Route::post('/users/create', [UserController::class , 'postNewUser'])->name('use
 
 Route::get('/', [ProductController::class , 'getStoreProduct'])->name('product.store');
 
+// Logged only access
 Route::middleware(['auth'])->group(function () {
-	Route::get('/produto/cadastro', [ProductController::class , 'getNewProductPage'])->name('product.new');
-
-	Route::post('/products/create', [ProductController::class , 'postCreateNewProduct'])->name('products.create');
-
-	// Route store
 	Route::post('/loja', [ProductController::class , 'cartProducts'])->name('product.cart');
+});
 
+// Admin only access
+Route::middleware(['auth', 'admin'])->group(function () {
+	Route::get('/produtos/cadastro', [ProductController::class , 'getNewProductPage'])->name('product.new');
 	Route::get('/produtos/detalhes', [ProductController::class , 'details'])->name('product.details');
-
-	Route::delete('/products/{id}', [ProductController::class , 'delete'])->name('product.delete');
-	Route::put('/products/{id}', [ProductController::class , 'update'])->name('product.update');
-
 	Route::get('/produtos/{id}/edit', [ProductController::class , 'edit'])->name('product.edit');
+
+	Route::post('/products', [ProductController::class , 'postCreateNewProduct'])->name('products.create');
+	Route::delete('/products/{id}', [ProductController::class , 'delete'])->name('products.delete');
+	Route::put('/products/{id}', [ProductController::class , 'update'])->name('products.update');
 });
