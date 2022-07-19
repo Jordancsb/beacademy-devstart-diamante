@@ -16,13 +16,14 @@ Route::get('/logout', [UserController::class , 'getLogout'])->name('logout');
 
 Route::post('/users/create', [UserController::class , 'postNewUser'])->name('users.create');
 
+Route::get('/', [ProductController::class , 'getStoreProduct'])->name('product.store');
+
 Route::middleware(['auth'])->group(function () {
 	Route::get('/produto/cadastro', [ProductController::class , 'getNewProductPage'])->name('product.new');
 
 	Route::post('/products/create', [ProductController::class , 'postCreateNewProduct'])->name('products.create');
 
 	// Route store
-	Route::get('/loja', [ProductController::class , 'getStoreProduct'])->name('product.store');
 	Route::post('/loja', [ProductController::class , 'cartProducts'])->name('product.cart');
 
 	Route::get('/produtos/detalhes', [ProductController::class , 'details'])->name('product.details');
