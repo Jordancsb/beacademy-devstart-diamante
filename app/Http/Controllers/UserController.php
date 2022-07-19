@@ -33,7 +33,7 @@ class UserController extends Controller
 		$credentials = $req->only('email', 'password');
 
 		if (Auth::attempt($credentials))
-			return redirect()->intended('/produto/cadastro');
+			return redirect()->intended('/loja');
 
 		return redirect()->back();
 	}

@@ -30,7 +30,7 @@
 							Gerenciar
 						</a>
 						<ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-							<li><a class="dropdown-item" href="#">Cadastrar Produto</a></li>
+							<li><a class="dropdown-item" href="{{ route('product.new') }}">Cadastrar Produto</a></li>
 							<li><a class="dropdown-item" href="#">Another action</a></li>
 						</ul>
 					</li>
