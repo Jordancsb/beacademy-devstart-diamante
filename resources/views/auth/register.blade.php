@@ -4,7 +4,7 @@
 
 @section('content')
 	<section>
-		@include('partial.sidenav')
+		@include('partial.sidenav', ['text' => 'Bom te ver aqui! Seja muito bem-vindo!'])
 
 		<div class="main">
 			<div class="col-md-8 col-sm-12">

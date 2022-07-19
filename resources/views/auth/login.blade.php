@@ -4,7 +4,7 @@
 
 @section('content')
 	<section>
-		@include('partial.sidenav')
+		@include('partial.sidenav', ['text' => 'Ainda não faz parte do nosso time! Registre-se agora!'])
 
 		<div class="main">
 			<div class="col-md-6 col-sm-12">
