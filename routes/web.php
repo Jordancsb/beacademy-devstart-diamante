@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\CartController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -16,19 +15,20 @@ Route::get('/logout', [UserController::class , 'getLogout'])->name('logout');
 
 Route::post('/users/create', [UserController::class , 'postNewUser'])->name('users.create');
 
+Route::get('/', [ProductController::class , 'getStorePage'])->name('product.store');
+
+// Logged only access
 Route::middleware(['auth'])->group(function () {
-	Route::get('/produto/cadastro', [ProductController::class , 'getNewProductPage'])->name('product.new');
+	Route::post('/loja', [ProductController::class , 'postProductToCart'])->name('product.cart');
+});
 
-	Route::post('/products/create', [ProductController::class , 'postCreateNewProduct'])->name('products.create');
+// Admin only access
+Route::middleware(['auth', 'admin'])->group(function () {
+	Route::get('/produtos/gerenciar', [ProductController::class , 'getListPage'])->name('product.details');
+	Route::get('/produtos/cadastro', [ProductController::class , 'getNewProductPage'])->name('product.new');
+	Route::get('/produtos/{id}/edit', [ProductController::class , 'getEditPage'])->name('product.edit');
 
-	// Route store
-	Route::get('/loja', [ProductController::class , 'getStoreProduct'])->name('product.store');
-	Route::post('/loja', [ProductController::class , 'cartProducts'])->name('product.cart');
-
-	Route::get('/produtos/detalhes', [ProductController::class , 'details'])->name('product.details');
-
-	Route::delete('/products/{id}', [ProductController::class , 'delete'])->name('product.delete');
-	Route::put('/products/{id}', [ProductController::class , 'update'])->name('product.update');
-
-	Route::get('/produtos/{id}/edit', [ProductController::class , 'edit'])->name('product.edit');
+	Route::post('/products', [ProductController::class , 'postNewProduct'])->name('products.create');
+	Route::delete('/products/{id}', [ProductController::class , 'deleteProduct'])->name('products.delete');
+	Route::put('/products/{id}', [ProductController::class , 'putProduct'])->name('products.update');
 });

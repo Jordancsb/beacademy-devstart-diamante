@@ -62,7 +62,7 @@
 							id="address" name="address">
 					</div>
 
-					<a class="btn btn-outline-dark" href="{{ route('login') }}">Voltar</a>
+					<a class="btn btn-outline-dark" href="{{ route('login') }}">Entrar</a>
 					<button type="submit" class="btn btn-dark">Cadastrar</button>
 				</form>
 			</div>
