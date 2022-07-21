@@ -39,7 +39,17 @@
 
 									<form action="{{ route('product.cart', $product->id) }}" method="post" class="mt-3 mb-0">
 										@csrf
-										<button type="submit" class="btn btn-outline-dark">Carrinho</button>
+										<div class="row">
+											<div class="col col-sm-6 form-floating mb-3">
+												<input type="number" class="form-control" id="quantityInput" placeholder="1" value="1" name="quantity"
+													min="1" max="{{ $product->quantity }}">
+												<label for="quantityInput">Quantidade</label>
+											</div>
+
+											<div class="col col-sm-6">
+												<button type="submit" class="btn btn-outline-dark h-100 w-100">Carrinho</button>
+											</div>
+										</div>
 									</form>
 								</div>
 							</div>
