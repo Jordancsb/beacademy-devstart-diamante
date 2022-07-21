@@ -5,7 +5,6 @@
 @section('content')
 	<section class="container justify-content-center mt-5">
 		<form action="{{ route('product.store') }}" method="GET">
-			@csrf
 			<div class="input-group mb-3">
 				<input type="text" class="form-control" placeholder="Pesquisar..." aria-label="Pesquisar..."
 					aria-describedby="searchAddon" name="search">
