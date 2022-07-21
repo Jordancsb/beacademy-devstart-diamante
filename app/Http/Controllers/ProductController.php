@@ -3,13 +3,12 @@
 namespace App\Http\Controllers;
 use Symfony\Component\HttpFoundation\Request;
 use App\Models\Product;
-use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
-    public function __construct(Product $model)
+    public function __construct(Product $product)
     {
-        $this->model = $model;
+        $this->product = $product;
     }
 
     public function getNewProductPage()
@@ -21,23 +20,17 @@ class ProductController extends Controller
     {
         $data = $req->only('name', 'description', 'image_url', 'size', 'quantity', 'sale_price', 'cost_price');
 
-        $this->model->create($data);
+        $this->product->create($data);
 
         return redirect()->route('product.details');
     }
 
     public function getStorePage(Request $request)
     {
-        $products = $this->model->getProducts(
+        $products = $this->product->getProducts(
             $request->search ?? ''
         );
         return view('product.store', compact('products'));
-    }
-
-
-    public function postProductToCart(Request $request, $id)
-    {
-    // add the products that were selected by ID in one array
     }
 
     public function getListPage()
@@ -57,7 +50,7 @@ class ProductController extends Controller
 
     public function putProduct(Request $request, $id)
     {
-        if (!$product = $this->model->find($id)) {
+        if (!$product = $this->product->find($id)) {
             return redirect()->route('product.details');
         }
 
@@ -70,7 +63,7 @@ class ProductController extends Controller
 
     public function deleteProduct($id)
     {
-        if (!$product = $this->model->find($id)) {
+        if (!$product = $this->product->find($id)) {
             return redirect()->route('product.details');
         }
 

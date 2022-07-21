@@ -37,7 +37,7 @@
 										</div>
 									</div>
 
-									<form action="{{ route('product.cart', $product->id) }}" method="post" class="mt-3 mb-0">
+									<form action="{{ route('cart.create', $product->id) }}" method="post" class="mt-3 mb-0">
 										@csrf
 										<div class="row">
 											<div class="col col-sm-6 form-floating mb-3">
