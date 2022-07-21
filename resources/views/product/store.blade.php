@@ -17,7 +17,7 @@
 		<div class="row row-cols-1 row-cols-md-3 g-4">
 			@foreach ($products as $product)
 				<div class="col-md-6">
-					<div class="card mb-3">
+					<div class="card mb-3 h-100">
 						<div class="row ">
 							<div class="col-md-4">
 								<img src="{{ $product->image_url }} " class="card-img-top" alt="...">
