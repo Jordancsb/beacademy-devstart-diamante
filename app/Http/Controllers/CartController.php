@@ -3,11 +3,33 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Order;
+use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
 {
-    public function index()
+    public function __construct(private Order $order)
     {
-        return view('cart.index');
+    }
+
+    public function getIndexPage()
+    {
+        $cart = Auth::user()->orders()->where('status', 'cart')->get();
+
+        return view('cart.index', compact('cart'));
+    }
+
+    public function postProductToCart(Request $req, $product_id)
+    {
+        $data = [
+            'user_id' => Auth::user()->id,
+            'product_id' => $product_id,
+            'product_quantity' => $req->quantity,
+            'status' => 'cart'
+        ];
+
+        $this->order->create($data);
+
+        return redirect()->back();
     }
 }
