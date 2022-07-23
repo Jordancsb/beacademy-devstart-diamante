@@ -11,9 +11,8 @@
 					<li class="nav-item">
 						<a class="nav-link active" aria-current="page" href="{{ route('product.store') }}">Loja</a>
 					</li>
-
 					<li class="nav-item">
-						<a class="nav-link" href="#">Carrinho</a>
+						<a class="nav-link active" aria-current="page" href="{{ route('cart.index') }}">Carrinho</a>
 					</li>
 
 					@if (Auth::user()->admin)

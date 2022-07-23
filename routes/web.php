@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -20,6 +21,12 @@ Route::get('/', [ProductController::class , 'getStorePage'])->name('product.stor
 // Logged only access
 Route::middleware(['auth'])->group(function () {
 	Route::post('/loja', [ProductController::class , 'postProductToCart'])->name('product.cart');
+	Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+    Route::post('/add/{id}', [CartController::class, 'add'])->name('cart.add');
+    Route::delete('/cart-remove/{id}', [CartController::class, 'destroy'])->name('cart.destroy');
+    Route::put('/add-quantity/{id}', [CartController::class, 'addQuantity'])->name('cart.addQuantity');
+    Route::put('/remove-quantity/{id}', [CartController::class, 'removeQuantity'])->name('cart.removeQuantity');
+	
 });
 
 // Admin only access
