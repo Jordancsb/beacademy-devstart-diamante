@@ -40,7 +40,7 @@ class ProductController extends Controller
     // add the products that were selected by ID in one array
     }
 
-    public function getListPage()
+    public function getAdminListPage()
     {
         $products = Product::all();
         return view('product.details')->with('products', $products);
