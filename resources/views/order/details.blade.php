@@ -34,12 +34,9 @@
 						<td>{{ $order->status }}</td>
 						<td>{{ $order->updated_at->format('d/m/Y H:i:s') }}</td>
 						<td>
-							<form action="{{ route('orders.delete', $order->id) }}" method="POST">
-								@method('DELETE')
-								@csrf
-								<a href="{{ route('order.edit', $order->id) }}" class="btn btn-outline-warning btn-sm mb-1">Editar</a>
-								<button type="submit" class="btn btn-outline-danger btn-sm">Deletar</button>
-							</form>
+							<a href="{{ route('order.view', $order->id) }}" class="btn btn-outline-light">
+								Visualizar
+							</a>
 						</td>
 					</tr>
 				@endforeach
