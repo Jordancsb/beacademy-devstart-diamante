@@ -33,9 +33,15 @@ Route::middleware(['auth'])->group(function () {
 Route::middleware(['auth', 'admin'])->group(function () {
 	Route::get('/produtos/gerenciar', [ProductController::class , 'getAdminListPage'])->name('product.details');
 	Route::get('/produtos/cadastro', [ProductController::class , 'getNewProductPage'])->name('product.new');
-	Route::get('/produtos/{id}/edit', [ProductController::class , 'getEditPage'])->name('product.edit');
+	Route::get('/produtos/{id}/editar', [ProductController::class , 'getEditPage'])->name('product.edit');
 
 	Route::post('/products', [ProductController::class , 'postNewProduct'])->name('products.create');
 	Route::delete('/products/{id}', [ProductController::class , 'deleteProduct'])->name('products.delete');
 	Route::put('/products/{id}', [ProductController::class , 'putProduct'])->name('products.update');
+
+	Route::get('/usuarios/gerenciar', [UserController::class , 'getAdminListPage'])->name('user.details');
+	Route::get('/usuarios/{id}/editar', [UserController::class , 'getUserEditPage'])->name('user.edit');
+
+	Route::put('/users/{id}', [UserController::class , 'updateUser'])->name('users.update');
+	Route::delete('/users/{id}/', [UserController::class , 'deleteUser'])->name('users.delete');
 });
