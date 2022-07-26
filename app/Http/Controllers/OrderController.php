@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Order;
+use Illuminate\Support\Facades\Mail;
 
 class OrderController extends Controller
 {
@@ -27,10 +28,19 @@ class OrderController extends Controller
 
     public function deleteOrder($id)
     {
-    // Deleta o pedido.
+        $order = $this->order->findOrFail($id);
 
-    // Envia um email comunicando a deleção do pedido.
+        $productName = $order->product->name;
 
-    // Redireciona o usuário.
+        $order->delete();
+
+        // Envia um email comunicando a deleção do pedido.
+        Mail::send('mail.order.deleted', ['productName' => $productName], function ($mail) use ($order) {
+            $mail->to($order->user->email);
+            $mail->priority(1);
+            $mail->subject('Seu Pedido foi cancelado!');
+        });
+
+        return redirect()->route('order.details');
     }
 }
