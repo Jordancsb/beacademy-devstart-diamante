@@ -24,7 +24,7 @@
 							</a>
 							<ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 								<li><a class="dropdown-item" href="{{ route('product.details') }}">Produtos</a></li>
-								<li><a class="dropdown-item" href="#">Usuários</a></li>
+								<li><a class="dropdown-item" href="{{ route('user.details') }}">Usuários</a></li>
 							</ul>
 						</li>
 					@endif

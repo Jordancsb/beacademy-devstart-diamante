@@ -23,6 +23,13 @@ class UserController extends Controller
 		return view('auth.register');
 	}
 
+	public function getAdminListPage()
+	{
+		$users = $this->user->all();
+
+		return view('user.details', compact('users'));
+	}
+
 	function checkout()
 	{
 		return view('auth.checkout');
