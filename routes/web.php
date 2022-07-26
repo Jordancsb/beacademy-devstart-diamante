@@ -40,8 +40,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
 	Route::delete('/users/{id}/', [UserController::class , 'deleteUser'])->name('users.delete');
 
 	Route::get('/pedidos/gerenciar', [OrderController::class , 'getAdminListPage'])->name('order.details');
-	Route::get('/pedidos/{id}/editar', [OrderController::class , 'getEditPage'])->name('order.edit');
+	Route::get('/pedidos/{id}/visualizar', [OrderController::class , 'getViewPage'])->name('order.view');
 
-	Route::put('/orders/{id}', [OrderController::class , 'updateUser'])->name('orders.update');
 	Route::delete('/orders/{id}/', [OrderController::class , 'deleteUser'])->name('orders.delete');
 });
