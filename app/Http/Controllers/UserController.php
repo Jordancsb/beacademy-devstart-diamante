@@ -30,6 +30,14 @@ class UserController extends Controller
 		return view('user.details', compact('users'));
 	}
 
+	public function getUserEditPage($id)
+	{
+		if (!$user = $this->user->find($id))
+			return redirect()->back();
+
+		return view('user.edit', compact('user'));
+	}
+
 	function checkout()
 	{
 		return view('auth.checkout');
@@ -70,5 +78,20 @@ class UserController extends Controller
 		Auth::logout();
 
 		return redirect()->route('product.store');
+	}
+
+	public function updateUser(Request $req, $id)
+	{
+		$user = $this->user->findOrFail($id);
+
+		$data = $req->only('first_name', 'last_name', 'email', 'phone', 'cpf', 'birth_date', 'cep', 'address');
+		$data['admin'] = (bool)$req->admin ?? false;
+
+		if ($req->password)
+			$data['password'] = bcrypt($req->password);
+
+		$user->update($data);
+
+		return redirect()->route('user.details');
 	}
 }
