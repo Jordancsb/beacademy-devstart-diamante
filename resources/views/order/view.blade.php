@@ -6,7 +6,7 @@
 	<div class="container">
 		<h1 class="mb-3">Pedido Nº {{ $order->id }}</h1>
 
-		<form action="{{ route('users.delete', $order->id) }}" method="post">
+		<form action="{{ route('orders.delete', $order->id) }}" method="post">
 			@method('DELETE')
 			@csrf
 
