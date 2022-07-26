@@ -4,8 +4,6 @@
 	<div class="container mt-2">
 		<h1>Gerenciar Usuários</h1>
 
-		<a href="{{ route('product.new') }}" class="btn btn-dark mb-3">Novo</a>
-
 		<table class="table table-dark table-hover table-bordered table-striped">
 			<thead>
 				<tr>
