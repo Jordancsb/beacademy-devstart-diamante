@@ -94,4 +94,13 @@ class UserController extends Controller
 
 		return redirect()->route('user.details');
 	}
+
+	public function deleteUser($id)
+	{
+		$user = $this->user->findOrFail($id);
+
+		$user->delete();
+
+		return Auth::user()->id == $id ? redirect()->route('logout') : redirect()->route('user.details');
+	}
 }
