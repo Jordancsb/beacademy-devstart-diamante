@@ -34,15 +34,13 @@
 											</div>
 											<div class="col">
 												<b> <strong style="color: red"> R$
-													</strong> <span style="color: green"> {{ $product->sale_price }}</span>
+													</strong> <span style="color: green"> {{ $product->cost_price }}</span>
 												</b>
 											</div>
 										</div>
 									</div>
-									<form action="{{ route('cart.add', $product->id) }}" method="POST" class="mt-3 mb-0">
-										@csrf
-										<button type="submit" class="btn btn-outline-dark " style="width: 100%;"> 
-											Carrinho
+									<form action="{{ route('product.cart', $product->id) }}" method="post" class="mt-3 mb-0">
+										<button type="submit" class="btn btn-outline-dark " style="width: 100%;"> Carrinho
 										</button>
 									</form>
 
