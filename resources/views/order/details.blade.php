@@ -8,8 +8,8 @@
 			<thead>
 				<tr>
 					<th scope="col">ID</th>
-					<th scope="col">Usuário</th>
 					<th scope="col">Produto</th>
+					<th scope="col">Usuário</th>
 					<th scope="col">Quantidade</th>
 					<th scope="col">Status</th>
 					<th scope="col">Atualização</th>
@@ -21,13 +21,13 @@
 					<tr>
 						<th>{{ $order->id }}</th>
 						<td>
-							<a class="link-light" href="{{ route('user.edit', $order->user->id) }}" target="_blank">
-								{{ $order->user->full_name }}
+							<a class="link-light" href="{{ route('product.edit', $order->product->id) }}" target="_blank">
+								{{ $order->product->name }}
 							</a>
 						</td>
 						<td>
-							<a class="link-light" href="{{ route('product.edit', $order->product->id) }}" target="_blank">
-								{{ $order->product->name }}
+							<a class="link-light" href="{{ route('user.edit', $order->user->id) }}" target="_blank">
+								{{ $order->user->full_name }}
 							</a>
 						</td>
 						<td>{{ $order->product_quantity }}</td>
