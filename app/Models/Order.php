@@ -16,6 +16,11 @@ class Order extends Model
         'status'
     ];
 
+    protected $casts = [
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime'
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -23,6 +28,6 @@ class Order extends Model
 
     public function product()
     {
-        $this->belongsTo(Product::class);
+        return $this->belongsTo(Product::class);
     }
 }
