@@ -53,4 +53,50 @@ class CartController extends Controller
 
         return redirect()->back();
     }
+
+    public function putCartQuantityLess($id)
+    {
+        $order = $this->order->findOrFail($id);
+        $product = $order->product;
+
+        $newOrderProductQuantity = $order->product_quantity - 1;
+        $newProductQuantity = $product->quantity + 1;
+
+        if ($newOrderProductQuantity == 0) {
+            $order->delete();
+            return redirect()->back();
+        }
+        else {
+            $order->update([
+                'product_quantity' => $newOrderProductQuantity,
+            ]);
+        }
+
+        $product->update([
+            'quantity' => $newProductQuantity,
+        ]);
+
+        return redirect()->back();
+    }
+    public function putCartQuantityMore($id)
+    {
+        $order = $this->order->findOrFail($id);
+        $product = $order->product;
+
+        $newOrderProductQuantity = $order->product_quantity + 1;
+        $newProductQuantity = $product->quantity - 1;
+
+        if ($product->quantity == 0)
+            return redirect()->back();
+
+        $order->update([
+            'product_quantity' => $newOrderProductQuantity,
+        ]);
+
+        $product->update([
+            'quantity' => $newProductQuantity,
+        ]);
+
+        return redirect()->back();
+    }
 }

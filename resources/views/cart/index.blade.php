@@ -37,7 +37,8 @@
 							class="col-6 offset-6 col-sm-6 offtset-sm-6 col-md-4 offset-md-8 col-lg-3 offset-lg-0 col-xl-2 align-self-center mt-3">
 
 							<div class="input-group">
-								<button type="button" class="btn btn-outline-dark btn-sm">
+								<button type="button" class="btn btn-outline-dark btn-sm"
+									onclick="document.getElementById('updateCartQuantityForm').action = '{{ route('carts.quantity.update.less', $order->id) }}'; document.getElementById('updateCartQuantityForm').submit()">
 									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
 										class="bi bi-caret-down-fill" viewBox="0 0 16 16">
 										<path
@@ -45,9 +46,11 @@
 									</svg>
 								</button>
 
-								<input type="number" class="form-control text-center border-dark" value="{{ $order->product_quantity }}">
+								<input type="number" class="form-control text-center border-dark" value="{{ $order->product_quantity }}"
+									readonly>
 
-								<button type="button" class="btn btn-outline-dark btn-sm">
+								<button type="button" class="btn btn-outline-dark btn-sm"
+									onclick="document.getElementById('updateCartQuantityForm').action = '{{ route('carts.quantity.update.more', $order->id) }}'; document.getElementById('updateCartQuantityForm').submit()">
 									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
 										class="bi bi-caret-up-fill" viewBox="0 0 16 16">
 										<path
@@ -94,5 +97,11 @@
 		@csrf
 		@method('DELETE')
 	</form>
+
+	<form method="POST" id="updateCartQuantityForm" hidden>
+		@csrf
+		@method('PUT')
+	</form>
+
 
 @endsection

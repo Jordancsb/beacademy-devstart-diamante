@@ -25,6 +25,8 @@ Route::middleware(['auth'])->group(function () {
 
 	Route::post('/cart/{product_id}', [CartController::class , 'postProductToCart'])->name('cart.create');
 	Route::delete('/cart/{id}/delete', [CartController::class , 'deleteCartOrder'])->name('carts.delete');
+	Route::put('/cart/{id}/quantity/less', [CartController::class , 'putCartQuantityLess'])->name('carts.quantity.update.less');
+	Route::put('/cart/{id}/quantity/more', [CartController::class , 'putCartQuantityMore'])->name('carts.quantity.update.more');
 });
 
 // Admin only access
