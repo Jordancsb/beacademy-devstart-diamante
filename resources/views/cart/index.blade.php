@@ -1,3 +1,5 @@
+@php($total = 0)
+
 @extends('template.default')
 
 @section('title', 'Carrinho')
@@ -66,17 +68,19 @@
 
 							<div class="text-right mt-2">
 								{{-- <small class="text-secondary">Bonus: R$ 3.40</small> --}}
-								<p class="text-dark"><strong>Valor:</strong> R$ {{ $order->product->sale_price }}</p>
+								<p class="text-dark"><strong>Valor:</strong> R$ {{ $order->product->sale_price * $order->product_quantity }}</p>
 							</div>
 						</div>
 					</div>
 				</li>
+
+				@php($total += $order->product->sale_price * $order->product_quantity)
 			@endforeach
 
 			<li class="list-group-item py-3 ">
 				<div class="text-right">
 					<h4 class="text-dark mb-3">
-						Valor Total: R$ 157,80
+						Valor Total: R$ {{ $total }}
 					</h4>
 					<a href="{{ route('product.store') }}" class="btn btn-outline-success btn-lg">Continuar Comprando</a>
 					<button class="btn btn-danger btn-lg">Fechar Compra</button>
