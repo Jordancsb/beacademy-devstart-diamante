@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 use Symfony\Component\HttpFoundation\Request;
 use App\Models\Product;
-use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
@@ -20,13 +19,12 @@ class ProductController extends Controller
     public function postNewProduct(Request $req)
     {
         $data = $req->only('name', 'description', 'image_url', 'size', 'quantity', 'sale_price', 'cost_price');
-
+        
         if(!$this->product->create($data))
         {
             return redirect()->route('product.details')->with("error","Produto não cadastrado ");
         }
         return redirect()->route('product.details')->with("success","Produto Cadastrado com Sucesso!");
-        
     }
 
     public function getStorePage(Request $request)
@@ -36,7 +34,6 @@ class ProductController extends Controller
         );
         return view('product.store', compact('products'));
     }
-
 
     public function postProductToCart(Request $request, $id)
     {
@@ -76,7 +73,6 @@ class ProductController extends Controller
     public function deleteProduct($id)
     {
         if (!$product = $this->product->find($id)) {
-
             return redirect()->route('product.details')->with("warning","Produto não encontrado.");
         }
 
