@@ -3,8 +3,9 @@
 @section('content')
 	<div class="container mt-2">
 		<h1>Gerenciar Produtos</h1>
-
 		<a href="{{ route('product.new') }}" class="btn btn-dark mb-3">Novo</a>
+
+		@include('partial.message.flash')
 
 		<table class="table table-dark table-hover table-bordered table-striped">
 			<thead>

@@ -31,7 +31,8 @@ class User extends Authenticatable
 	];
 
 	protected $appends = [
-		'full_name'
+		'full_name',
+		'formatted_birth_date'
 	];
 
 	/**
@@ -58,6 +59,13 @@ class User extends Authenticatable
 	public function getFullNameAttribute()
 	{
 		return "{$this->first_name} {$this->last_name}";
+	}
+
+	public function getFormattedBirthDateAttribute()
+	{
+		$date = strtotime($this->birth_date);
+
+		return date('d/m/Y', $date);
 	}
 
 	public function orders()

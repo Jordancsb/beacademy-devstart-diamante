@@ -6,7 +6,7 @@
 			<span class="navbar-toggler-icon"></span>
 		</button>
 		<div class="collapse navbar-collapse" id="navbarNavDropdown">
-			<ul class="navbar-nav">
+			<ul class="navbar-nav mx-auto">
 				@if (Auth::check())
 					<li class="nav-item">
 						<a class="nav-link active" aria-current="page" href="{{ route('product.store') }}">Loja</a>
@@ -24,7 +24,8 @@
 							</a>
 							<ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 								<li><a class="dropdown-item" href="{{ route('product.details') }}">Produtos</a></li>
-								<li><a class="dropdown-item" href="#">Usuários</a></li>
+								<li><a class="dropdown-item" href="{{ route('user.details') }}">Usuários</a></li>
+								<li><a class="dropdown-item" href="{{ route('order.details') }}">Pedidos</a></li>
 							</ul>
 						</li>
 					@endif

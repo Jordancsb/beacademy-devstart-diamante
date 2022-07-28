@@ -23,6 +23,21 @@ class UserController extends Controller
 		return view('auth.register');
 	}
 
+	public function getAdminListPage()
+	{
+		$users = $this->user->all();
+
+		return view('user.details', compact('users'));
+	}
+
+	public function getUserEditPage($id)
+	{
+		if (!$user = $this->user->find($id))
+			return redirect()->back()->with("warning","Usuario não encontrado");
+
+		return view('user.edit', compact('user'));
+	}
+
 	function checkout()
 	{
 		return view('auth.checkout');
@@ -53,9 +68,12 @@ class UserController extends Controller
 
 		$data['password'] = bcrypt($req->password);
 
-		$this->user->create($data);
+		if(!$this->user->create($data))
+		{
+			return redirect()->route('login')->with("error","Usuario não cadastrado.");
+		}
 
-		return redirect()->route('login');
+		return redirect()->route('login')->with("success","Usuario cadastrado.");
 	}
 
 	public function getLogout()
@@ -63,5 +81,32 @@ class UserController extends Controller
 		Auth::logout();
 
 		return redirect()->route('product.store');
+	}
+
+	public function updateUser(Request $req, $id)
+	{
+		$user = $this->user->findOrFail($id);
+
+		$data = $req->only('first_name', 'last_name', 'email', 'phone', 'cpf', 'birth_date', 'cep', 'address');
+		$data['admin'] = (bool)$req->admin ?? false;
+
+		if ($req->password)
+			$data['password'] = bcrypt($req->password);
+
+		if(!$user->update($data))
+		{
+			return redirect()->route('user.details')->with("warning","Usuario nao atualizado.");
+		}
+
+		return redirect()->route('user.details')->with("info","Usuario  atualizado.");
+	}
+
+	public function deleteUser($id)
+	{
+		$user = $this->user->findOrFail($id);
+
+		$user->delete();
+
+		return Auth::user()->id == $id ? redirect()->route('logout')->with("warning","Usuario deletado") : redirect()->route('user.details')->with("info","Usuario deletado");
 	}
 }
