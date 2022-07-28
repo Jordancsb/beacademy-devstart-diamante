@@ -33,7 +33,7 @@
 											</p>
 										</div>
 										<div class="col">
-											<p class="card-text"><strong>R$</strong> {{ $product->cost_price }}</p>
+											<p class="card-text"><strong>R$</strong> {{ $product->sale_price }}</p>
 										</div>
 									</div>
 
