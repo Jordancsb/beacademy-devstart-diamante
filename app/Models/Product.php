@@ -32,6 +32,7 @@ class Product extends Model
 				$query->orWhere('size', $search);
 			}
 		})
+			->where('quantity', '>', 0)
 			->paginate(6);
 		return $products;
 	}
