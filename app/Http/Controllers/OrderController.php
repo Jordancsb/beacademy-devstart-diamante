@@ -34,6 +34,12 @@ class OrderController extends Controller
 
         $order->delete();
 
+        $newQuantity = $order->product->quantity + $order->product_quantity;
+
+        $order->product->update([
+            'quantity' => $newQuantity,
+        ]);
+
         // Envia um email comunicando a deleção do pedido.
         Mail::send('mail.order.deleted', ['productName' => $productName], function ($mail) use ($order) {
             $mail->to($order->user->email);

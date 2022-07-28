@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Order;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Product;
 
 class CartController extends Controller
 {
@@ -28,7 +29,13 @@ class CartController extends Controller
             'status' => 'cart'
         ];
 
-        $this->order->create($data);
+        $order = $this->order->create($data);
+
+        $newQuantity = $order->product->quantity - $req->quantity;
+
+        $order->product->update([
+            'quantity' => $newQuantity
+        ]);
 
         return redirect()->back();
     }
