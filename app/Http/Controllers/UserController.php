@@ -33,7 +33,7 @@ class UserController extends Controller
 	public function getUserEditPage($id)
 	{
 		if (!$user = $this->user->find($id))
-			return redirect()->back();
+			return redirect()->back()->with("warning","Usuario não encontrado");
 
 		return view('user.edit', compact('user'));
 	}
@@ -68,9 +68,12 @@ class UserController extends Controller
 
 		$data['password'] = bcrypt($req->password);
 
-		$this->user->create($data);
+		if(!$this->user->create($data))
+		{
+			return redirect()->route('login')->with("error","Usuario não cadastrado.");
+		}
 
-		return redirect()->route('login');
+		return redirect()->route('login')->with("success","Usuario cadastrado.");
 	}
 
 	public function getLogout()
@@ -90,9 +93,12 @@ class UserController extends Controller
 		if ($req->password)
 			$data['password'] = bcrypt($req->password);
 
-		$user->update($data);
+		if(!$user->update($data))
+		{
+			return redirect()->route('user.details')->with("warning","Usuario nao atualizado.");
+		}
 
-		return redirect()->route('user.details');
+		return redirect()->route('user.details')->with("info","Usuario  atualizado.");
 	}
 
 	public function deleteUser($id)
@@ -101,6 +107,6 @@ class UserController extends Controller
 
 		$user->delete();
 
-		return Auth::user()->id == $id ? redirect()->route('logout') : redirect()->route('user.details');
+		return Auth::user()->id == $id ? redirect()->route('logout')->with("warning","Usuario deletado") : redirect()->route('user.details')->with("info","Usuario deletado");
 	}
 }

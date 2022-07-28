@@ -7,6 +7,7 @@
 		@include('partial.sidenav', ['text' => 'Ainda não faz parte do nosso time! Registre-se agora!'])
 
 		<div class="main">
+			@include('message.flash-message')
 			<div class="col-md-6 col-sm-12">
 				<form class="login-form" action="{{ route('auth.login') }}" method="POST">
 					@include('partial.error')
