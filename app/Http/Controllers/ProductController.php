@@ -19,12 +19,11 @@ class ProductController extends Controller
     public function postNewProduct(Request $req)
     {
         $data = $req->only('name', 'description', 'image_url', 'size', 'quantity', 'sale_price', 'cost_price');
-        
-        if(!$this->product->create($data))
-        {
-            return redirect()->route('product.details')->with("error","Produto não cadastrado ");
+
+        if (!$this->product->create($data)) {
+            return redirect()->route('product.details')->with("error", "Produto não cadastrado ");
         }
-        return redirect()->route('product.details')->with("success","Produto Cadastrado com Sucesso!");
+        return redirect()->route('product.details')->with("success", "Produto Cadastrado com Sucesso!");
     }
 
     public function getStorePage(Request $request)
@@ -33,11 +32,6 @@ class ProductController extends Controller
             $request->search ?? ''
         );
         return view('product.store', compact('products'));
-    }
-
-    public function postProductToCart(Request $request, $id)
-    {
-    // add the products that were selected by ID in one array
     }
 
     public function getAdminListPage()
@@ -49,7 +43,7 @@ class ProductController extends Controller
     public function getEditPage($id)
     {
         if (!$product = $this->product->find($id)) {
-            return redirect()->route('product.details')->with("warning","Produto não encontrado.");
+            return redirect()->route('product.details')->with("warning", "Produto não encontrado.");
         }
 
         return view('product.edit', compact('product'));
@@ -58,28 +52,26 @@ class ProductController extends Controller
     public function putProduct(Request $request, $id)
     {
         if (!$product = $this->product->find($id)) {
-            return redirect()->route('product.details')->with("warning","Produto não encontrado.");
+            return redirect()->route('product.details')->with("warning", "Produto não encontrado.");
         }
         $data = $request->all();
 
-        if(!$product->update($data))
-        {
-            return redirect()->route('product.details')->with("error","Produto não atualizado.");
+        if (!$product->update($data)) {
+            return redirect()->route('product.details')->with("error", "Produto não atualizado.");
         }
 
-        return redirect()->route('product.details')->with("info","Produto atualizado!");
+        return redirect()->route('product.details')->with("info", "Produto atualizado!");
     }
 
     public function deleteProduct($id)
     {
         if (!$product = $this->product->find($id)) {
-            return redirect()->route('product.details')->with("warning","Produto não encontrado.");
+            return redirect()->route('product.details')->with("warning", "Produto não encontrado.");
         }
 
-        if(!$product->delete())
-        {
-            return redirect()->route('product.details')->with("error","Produto não deletado.");
+        if (!$product->delete()) {
+            return redirect()->route('product.details')->with("error", "Produto não deletado.");
         }
-        return redirect()->route('product.details')->with("warning","Produto deletado.");
+        return redirect()->route('product.details')->with("warning", "Produto deletado.");
     }
 }
