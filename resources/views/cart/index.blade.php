@@ -55,7 +55,8 @@
 									</svg>
 								</button>
 
-								<button type="button" class="btn btn-outline-danger border-dark dbtn-sm">
+								<button type="button" class="btn btn-outline-danger border-dark dbtn-sm"
+									onclick="document.getElementById('deleteCartOrderForm').action = '{{ route('carts.delete', $order->id) }}'; document.getElementById('deleteCartOrderForm').submit()">
 									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash"
 										viewBox="0 0 16 16">
 										<path
@@ -88,5 +89,10 @@
 			</li>
 		</ul>
 	</div>
+
+	<form method="POST" id="deleteCartOrderForm" hidden>
+		@csrf
+		@method('DELETE')
+	</form>
 
 @endsection

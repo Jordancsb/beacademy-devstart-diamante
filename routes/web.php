@@ -24,6 +24,7 @@ Route::middleware(['auth'])->group(function () {
 	Route::get('/carrinho', [CartController::class , 'getIndexPage'])->name('cart.index');
 
 	Route::post('/cart/{product_id}', [CartController::class , 'postProductToCart'])->name('cart.create');
+	Route::delete('/cart/{id}/delete', [CartController::class , 'deleteCartOrder'])->name('carts.delete');
 });
 
 // Admin only access

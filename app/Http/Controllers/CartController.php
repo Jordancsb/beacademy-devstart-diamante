@@ -38,4 +38,19 @@ class CartController extends Controller
 
         return redirect()->back();
     }
+
+    public function deleteCartOrder($id)
+    {
+        $order = $this->order->findOrFail($id);
+
+        $order->delete();
+
+        $newQuantity = $order->product->quantity + $order->product_quantity;
+
+        $order->product->update([
+            'quantity' => $newQuantity,
+        ]);
+
+        return redirect()->back();
+    }
 }
