@@ -13,7 +13,7 @@
 		</form>
 
 
-		<div class="row row-cols-1 row-cols-md-3 g-4">
+		<div class="row row-cols-1 row-cols-md-3 g-4 mb-3">
 			@foreach ($products as $product)
 				<div class="col-md-6">
 					<div class="card mb-3 h-100">
@@ -59,6 +59,7 @@
 			@endforeach
 		</div>
 
+		{{ $products->links('pagination::bootstrap-5') }}
 
 	</section>
 @endsection

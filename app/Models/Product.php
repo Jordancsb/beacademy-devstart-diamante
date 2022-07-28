@@ -33,7 +33,7 @@ class Product extends Model
 			}
 		})
 			->where('quantity', '>', 0)
-			->paginate(6);
+			->paginate(10);
 		return $products;
 	}
 }
