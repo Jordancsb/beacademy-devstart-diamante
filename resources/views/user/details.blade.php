@@ -4,6 +4,8 @@
 	<div class="container mt-2">
 		<h1>Gerenciar Usuários</h1>
 
+		@include('partial.message.flash')
+
 		<table class="table table-dark table-hover table-bordered table-striped">
 			<thead>
 				<tr>
