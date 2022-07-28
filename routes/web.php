@@ -20,6 +20,8 @@ Route::get('/', [ProductController::class , 'getStorePage'])->name('product.stor
 
 // Logged only access
 Route::middleware(['auth'])->group(function () {
+	Route::get('/usuario/pedidos', [UserController::class , 'getUserOrdersPage'])->name('user.orders');
+
 	Route::post('/loja', [ProductController::class , 'postProductToCart'])->name('product.cart');
 });
 
