@@ -37,6 +37,7 @@
 						</a>
 						<ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 							<li><a class="dropdown-item" href="#">Configurações</a></li>
+							<li><a class="dropdown-item" href="{{ route('user.orders') }}">Pedidos</a></li>
 							<li><a class="dropdown-item" href="{{ route('logout') }}">Sair</a></li>
 						</ul>
 					</li>

@@ -21,6 +21,8 @@ Route::get('/', [ProductController::class , 'getStorePage'])->name('product.stor
 
 // Logged only access
 Route::middleware(['auth'])->group(function () {
+	Route::get('/usuario/pedidos', [UserController::class , 'getUserOrdersPage'])->name('user.orders');
+  
 	Route::get('/carrinho', [CartController::class , 'getIndexPage'])->name('cart.index');
 
 	Route::post('/cart/{product_id}', [CartController::class , 'postProductToCart'])->name('cart.create');
