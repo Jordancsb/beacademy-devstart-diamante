@@ -13,7 +13,7 @@
 					</li>
 
 					<li class="nav-item">
-						<a class="nav-link" href="#">Carrinho</a>
+						<a class="nav-link" href="{{ route('cart.index') }}">Carrinho</a>
 					</li>
 
 					@if (Auth::user()->admin)

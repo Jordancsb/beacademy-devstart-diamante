@@ -25,15 +25,15 @@ class Product extends Model
 	}
 
 	public function getProducts(string $search = null)
-    {
-        $products = $this->where( function ($query) use ($search){
-            if($search)
-            {
-                $query->where('name','LIKE',"%{$search}%");
-                $query->orWhere('size',$search);
-            }
-        })
-        ->paginate(5);
-        return $products;
-    }
+	{
+		$products = $this->where(function ($query) use ($search) {
+			if ($search) {
+				$query->where('name', 'LIKE', "%{$search}%");
+				$query->orWhere('size', $search);
+			}
+		})
+			->where('quantity', '>', 0)
+			->paginate(10);
+		return $products;
+	}
 }
