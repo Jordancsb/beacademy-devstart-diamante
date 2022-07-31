@@ -48,9 +48,9 @@ class UserController extends Controller
 		$credentials = $req->only('email', 'password');
 
 		if (Auth::attempt($credentials))
-			return redirect()->intended(route('product.store'));
+			return redirect()->intended(route('product.store'), 302);
 
-		return redirect()->back();
+		return redirect(route('login'), 303);
 	}
 
 	public function postNewUser(Request $req)
