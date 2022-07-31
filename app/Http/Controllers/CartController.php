@@ -5,10 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Order;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Product;
 
 class CartController extends Controller
 {
-    public function __construct(private Order $order)
+    public function __construct(private Order $order, private Product $product)
     {
     }
 
@@ -28,11 +29,14 @@ class CartController extends Controller
             'status' => 'cart'
         ];
 
-        $order = $this->order->create($data);
+        $product = $this->product->findOrFail($product_id);
+        $newQuantity = $product->quantity - $req->quantity;
 
-        $newQuantity = $order->product->quantity - $req->quantity;
+        if ($newQuantity < 0)
+            return redirect()->back();
 
-        $order->product->update([
+        $this->order->create($data);
+        $product->update([
             'quantity' => $newQuantity
         ]);
 
@@ -42,6 +46,9 @@ class CartController extends Controller
     public function deleteCartOrder($id)
     {
         $order = $this->order->findOrFail($id);
+
+        if ($order->status != 'cart')
+            return redirect()->back();
 
         $order->delete();
 
@@ -57,6 +64,10 @@ class CartController extends Controller
     public function putCartQuantityLess($id)
     {
         $order = $this->order->findOrFail($id);
+
+        if ($order->status != 'cart')
+            return redirect()->back();
+
         $product = $order->product;
 
         $newOrderProductQuantity = $order->product_quantity - 1;
@@ -81,6 +92,10 @@ class CartController extends Controller
     public function putCartQuantityMore($id)
     {
         $order = $this->order->findOrFail($id);
+
+        if ($order->status != 'cart')
+            return redirect()->back();
+
         $product = $order->product;
 
         $newOrderProductQuantity = $order->product_quantity + 1;
