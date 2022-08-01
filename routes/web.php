@@ -22,8 +22,11 @@ Route::get('/', [ProductController::class , 'getStorePage'])->name('product.stor
 // Logged only access
 Route::middleware(['auth'])->group(function () {
 	Route::get('/usuario/pedidos', [UserController::class , 'getUserOrdersPage'])->name('user.orders');
-  
+
 	Route::get('/carrinho', [CartController::class , 'getIndexPage'])->name('cart.index');
+
+    Route::get('/usuarios/{id}/editar', [UserController::class , 'getUserEditPage'])->name('user.edit');
+    Route::put('/users/{id}', [UserController::class , 'updateUser'])->name('users.update');
 
 	Route::post('/cart/{product_id}', [CartController::class , 'postProductToCart'])->name('cart.create');
 	Route::delete('/cart/{id}/delete', [CartController::class , 'deleteCartOrder'])->name('carts.delete');
@@ -42,9 +45,9 @@ Route::middleware(['auth', 'admin'])->group(function () {
 	Route::put('/products/{id}', [ProductController::class , 'putProduct'])->name('products.update');
 
 	Route::get('/usuarios/gerenciar', [UserController::class , 'getAdminListPage'])->name('user.details');
-	Route::get('/usuarios/{id}/editar', [UserController::class , 'getUserEditPage'])->name('user.edit');
-
-	Route::put('/users/{id}', [UserController::class , 'updateUser'])->name('users.update');
+//	Route::get('/usuarios/{id}/editar', [UserController::class , 'getUserEditPage'])->name('user.edit');
+//
+//	Route::put('/users/{id}', [UserController::class , 'updateUser'])->name('users.update');
 	Route::delete('/users/{id}/', [UserController::class , 'deleteUser'])->name('users.delete');
 
 	Route::get('/pedidos/gerenciar', [OrderController::class , 'getAdminListPage'])->name('order.details');

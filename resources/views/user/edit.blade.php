@@ -4,7 +4,7 @@
 	<div class="container">
 		<h1>Edição do Usuário</h1>
 
-		<form action="{{ route('users.update', $user->id) }}" method="post">
+		<form action="{{ route('users.update',$id = Auth::id()) }}" method="post">
 			@method('PUT')
 			@csrf
 
@@ -33,17 +33,17 @@
 					pattern="[0-9]+" size="13" maxlength="13" id="phone" value="{{ $user->phone }}" name="phone">
 			</div>
 
-			<div class="input-group flex-nowrap mb-2">
-				<span class="input-group-text" id="cpf">CPF</span>
-				<input aria-describedby="cpf" required type="text" class="form-control" placeholder="000.000.000-00"
-					pattern="[0-9]+" size="11" maxlength="11" id="cpf" value="{{ $user->cpf }}" name="cpf">
-			</div>
+{{--			<div class="input-group flex-nowrap mb-2">--}}
+{{--				<span class="input-group-text" id="cpf">CPF</span>--}}
+{{--				<input aria-describedby="cpf" required type="text" class="form-control" placeholder="000.000.000-00"--}}
+{{--					pattern="[0-9]+" size="11" maxlength="11" id="cpf" value="{{ $user->cpf }}" name="cpf">--}}
+{{--			</div>--}}
 
-			<div class="input-group flex-nowrap mb-2">
-				<span class="input-group-text" id="birth-date">Data de Nascimento</span>
-				<input aria-describedby="birth-date" required type="date" class="form-control" placeholder="00/00/0000"
-					id="birth-date" value="{{ $user->birth_date->format('Y-m-d') }}" name="birth_date">
-			</div>
+{{--			<div class="input-group flex-nowrap mb-2">--}}
+{{--				<span class="input-group-text" id="birth-date">Data de Nascimento</span>--}}
+{{--				<input aria-describedby="birth-date" required type="date" class="form-control" placeholder="00/00/0000"--}}
+{{--					id="birth-date" value="{{ $user->birth_date->format('Y-m-d') }}" name="birth_date">--}}
+{{--			</div>--}}
 
 			<div class="input-group flex-nowrap mb-2">
 				<span class="input-group-text" id="cep">CEP</span>
@@ -57,6 +57,7 @@
 					value="{{ $user->address }}" name="address">
 			</div>
 
+            @if (Auth::user()->admin)
 			<div class="form-check mb-3">
 				<input class="form-check-input" type="checkbox" value="1" id="admin" name="admin"
 					{{ (bool) $user->admin ? 'checked' : '' }}>
@@ -64,6 +65,7 @@
 					Administrador
 				</label>
 			</div>
+            @endif
 
 			<a href="{{ url()->previous() }}" class="btn btn-outline-dark">Voltar</a>
 			<button type="submit" class="btn btn-dark">Atualizar</button>
