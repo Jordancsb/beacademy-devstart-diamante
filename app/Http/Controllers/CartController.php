@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\Order;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Product;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Http;
 
 class CartController extends Controller
 {
@@ -75,7 +78,6 @@ class CartController extends Controller
 
         if ($newOrderProductQuantity == 0) {
             $order->delete();
-            return redirect()->back();
         }
         else {
             $order->update([
@@ -98,11 +100,11 @@ class CartController extends Controller
 
         $product = $order->product;
 
-        $newOrderProductQuantity = $order->product_quantity + 1;
-        $newProductQuantity = $product->quantity - 1;
-
         if ($product->quantity == 0)
             return redirect()->back();
+
+        $newOrderProductQuantity = $order->product_quantity + 1;
+        $newProductQuantity = $product->quantity - 1;
 
         $order->update([
             'product_quantity' => $newOrderProductQuantity,
@@ -113,5 +115,46 @@ class CartController extends Controller
         ]);
 
         return redirect()->back();
+    }
+
+    public function putCheckoutCart(Request $req)
+    {
+        $user = Auth::user();
+
+        $data = $req->only('transaction_type', 'transaction_installments', 'customer_card_number', 'customer_card_cvv');
+        $data['customer_card_expiration_date'] = Carbon::parse($req->customer_card_expiration_date)->format('m/Y');
+
+        $data['customer_name'] = $user->full_name;
+        $data['customer_document'] = $user->cpf;
+
+        $orders = $user->orders()->where('status', 'cart')->get();
+        $amount = 0;
+
+        foreach ($orders as $order) {
+            $amount += ($order->product->sale_price * $order->product_quantity);
+        }
+
+        $data['transaction_amount'] = $amount;
+
+        $response = Http::withoutVerifying()->withHeaders([
+            'Content-Type' => 'application/json',
+            'token' => 'UGFyYWLDqW5zLCB2b2PDqiBlc3RhIGluZG8gYmVtIQ=='
+        ])->post('https://tracktools.vercel.app/api/checkout', $data)->json();
+
+        if ($response['response']['code'] != 201)
+            return redirect(route('product.store'));
+
+        $this->order->where('status', 'cart')->update([
+            'transaction_id' => $response['transaction']['id'],
+            'status' => $response['transaction']['status']
+        ]);
+
+        Mail::send('mail.order.checkout', ['orders' => $orders, 'amount' => $amount, 'transactionId' => $response['transaction']['id']], function ($mail) use ($user) {
+            $mail->to($user->email);
+            $mail->priority(1);
+            $mail->subject("Seu pedido está em processamento, {$user->first_name}.");
+        });
+
+        return redirect(route('product.store'));
     }
 }

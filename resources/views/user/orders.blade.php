@@ -10,6 +10,7 @@
 					<th scope="col">Produto</th>
 					<th scope="col">Quantidade</th>
 					<th scope="col">Status</th>
+					<th scope="col">Código</th>
 					<th scope="col">Atualização</th>
 					<th scope="col">Data</th>
 				</tr>
@@ -17,13 +18,10 @@
 			<tbody>
 				@foreach ($orders as $order)
 					<tr>
-						<td>
-							<a class="link-light" href="{{ route('product.edit', $order->product->id) }}" target="_blank">
-								{{ $order->product->name }}
-							</a>
-						</td>
+						<td>{{ $order->product->name }}</td>
 						<td>{{ $order->product_quantity }}</td>
 						<td>{{ $order->status }}</td>
+						<td>{{ $order->transaction_id }}</td>
 						<td>{{ $order->updated_at->format('d/m/Y H:i:s') }}</td>
 						<td>{{ $order->created_at->format('d/m/Y H:i:s') }}</td>
 					</tr>

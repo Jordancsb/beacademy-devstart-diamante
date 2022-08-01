@@ -124,6 +124,8 @@
 					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 				</div>
 				<div class="modal-body">
+					<input type="hidden" value="card" name="transaction_type" hidden>
+
 					<div class="input-group mb-2">
 						<span class="input-group-text" id="cardNumber">Número</span>
 						<input type="text" class="form-control" placeholder="1111222233334444" minlength="16" maxlength="16"
@@ -136,10 +138,20 @@
 							minlength="3" maxlength="3" pattern="[0-9]+" required aria-describedby="cardCvv" name="customer_card_cvv">
 					</div>
 
-					<div class="input-group mb-3">
+					<div class="input-group mb-2">
 						<span class="input-group-text">Data de expiração</span>
 						<input type="month" class="form-control" placeholder="Data de expiração" aria-label="Data de expiração"
 							required name="customer_card_expiration_date">
+					</div>
+
+					<div class="input-group mb-3">
+						<label class="input-group-text" for="transactionInstallments">Parcelas</label>
+						<select class="form-select" id="transactionInstallments" required name="transaction_installments">
+							<option disabled selected value="">Selecione</option>
+							@for ($i = 1; $i <= 12; $i++)
+								<option value="{{ $i }}">{{ $i }}x</option>
+							@endfor
+						</select>
 					</div>
 				</div>
 				<div class="modal-footer">

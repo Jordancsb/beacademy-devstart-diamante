@@ -19,6 +19,8 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained('users')->onDelete('CASCADE')->onUpdate('CASCADE');
             $table->foreignId('product_id')->constrained('products')->onDelete('CASCADE')->onUpdate('CASCADE');
 
+            $table->string('transaction_id')->nullable();
+
             $table->integer('product_quantity');
             $table->string('status');
 
