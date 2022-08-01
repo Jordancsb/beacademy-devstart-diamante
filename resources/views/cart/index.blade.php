@@ -87,11 +87,68 @@
 						Valor Total: R$ {{ $total }}
 					</h4>
 					<a href="{{ route('product.store') }}" class="btn btn-outline-success btn-lg">Continuar Comprando</a>
-					<button class="btn btn-danger btn-lg">Fechar Compra</button>
+					<button class="btn btn-danger btn-lg" data-bs-toggle="modal" data-bs-target="#selectPaymentTypeModal">Fechar
+						Compra</button>
 				</div>
 			</li>
 		</ul>
 	</div>
+
+	<div class="modal fade" id="selectPaymentTypeModal" aria-hidden="true" aria-labelledby="selectPaymentTypeModalLabel"
+		tabindex="-1">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="selectPaymentTypeModalLabel">Método de pagamento</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					Selecione o método de pagamento a ser utilizado.
+				</div>
+				<div class="modal-footer">
+					<button class="btn btn-outline-dark" data-bs-target="#checkoutOrderUsingCardModal"
+						data-bs-toggle="modal">Cartão</button>
+					<button class="btn btn-dark" data-bs-target="#checkoutOrderUsingTicketModal" data-bs-toggle="modal">Boleto</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<form action="{{ route('orders.checkout') }}" method="POST" class="modal fade" id="checkoutOrderUsingCardModal"
+		tabindex="-1" aria-labelledby="checkoutOrderUsingCardModalLabel" aria-hidden="true" data-bs-backdrop="static">
+		@csrf
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="checkoutOrderUsingCardModalLabel">Preencha as informações do cartão</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<div class="input-group mb-2">
+						<span class="input-group-text" id="cardNumber">Número</span>
+						<input type="text" class="form-control" placeholder="1111222233334444" minlength="16" maxlength="16"
+							required aria-label="Número" pattern="[0-9]+" aria-describedby="cardNumber" name="customer_card_number">
+					</div>
+
+					<div class="input-group mb-2">
+						<span class="input-group-text" id="cardCvv">CVV</span>
+						<input type="text" class="form-control" placeholder="CVV" aria-label="CVV" placeholder="123"
+							minlength="3" maxlength="3" pattern="[0-9]+" required aria-describedby="cardCvv" name="customer_card_cvv">
+					</div>
+
+					<div class="input-group mb-3">
+						<span class="input-group-text">Data de expiração</span>
+						<input type="month" class="form-control" placeholder="Data de expiração" aria-label="Data de expiração"
+							required name="customer_card_expiration_date">
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+					<button type="submit" class="btn btn-primary">Finalizar</button>
+				</div>
+			</div>
+		</div>
+	</form>
 
 	<form method="POST" id="deleteCartOrderForm" hidden>
 		@csrf

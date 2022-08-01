@@ -50,18 +50,6 @@
 							id="birth-date" name="birth_date">
 					</div>
 
-					<div class="input-group flex-nowrap mb-2">
-						<span class="input-group-text" id="cep">CEP</span>
-						<input aria-describedby="cep" required type="text" class="form-control" placeholder="00000-000" pattern="[0-9]+"
-							size="8" maxlength="8" id="cep" name="cep">
-					</div>
-
-					<div class="input-group flex-nowrap mb-3">
-						<span class="input-group-text" id="address">Endereço</span>
-						<input aria-describedby="address" required type="text" class="form-control" placeholder="Endereço"
-							id="address" name="address">
-					</div>
-
 					<a class="btn btn-outline-dark" href="{{ route('login') }}">Entrar</a>
 					<button type="submit" class="btn btn-dark">Cadastrar</button>
 				</form>
