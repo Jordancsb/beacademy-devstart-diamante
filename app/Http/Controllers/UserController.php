@@ -62,8 +62,6 @@ class UserController extends Controller
 			'phone',
 			'cpf',
 			'birth_date',
-			'cep',
-			'address'
 		);
 
 		$data['password'] = bcrypt($req->password);
@@ -86,7 +84,7 @@ class UserController extends Controller
 	{
 		$user = $this->user->findOrFail($id);
 
-		$data = $req->only('first_name', 'last_name', 'email', 'phone', 'cpf', 'birth_date', 'cep', 'address');
+		$data = $req->only('first_name', 'last_name', 'email', 'phone', 'cpf', 'birth_date');
 		$data['admin'] = (bool)$req->admin ?? false;
 
 		if ($req->password)

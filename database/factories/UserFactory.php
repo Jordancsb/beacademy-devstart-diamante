@@ -22,10 +22,8 @@ class UserFactory extends Factory
 			'last_name' => $this->faker->lastName(),
 			'birth_date' => $this->faker->date(),
 			'phone' => $this->faker->phoneNumber(),
-			'address' => $this->faker->address(),
 
 			'cpf' => $this->faker->unique()->numberBetween(10000000000, 99999999999),
-			'cep' => $this->faker->numberBetween(10000000, 99999999),
 			'email' => $this->faker->unique()->safeEmail(),
 
 			'email_verified_at' => now(),
