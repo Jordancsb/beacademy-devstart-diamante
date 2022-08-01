@@ -66,7 +66,7 @@ class CartControllerTest extends TestCase
         // PREPARE
         $rootUser = User::factory()->create();
         Product::factory()->create();
-        $order = Order::factory()->create();
+        $order = Order::factory()->create(['status' => 'finished']);
 
         // ACT
         $this->actingAs($rootUser);
