@@ -14,12 +14,12 @@
 					@csrf
 					<div class="mb-3">
 						<label for="email" class="form-label">Email</label>
-						<input type="email" class="form-control" id="email" aria-describedby="emailHelp" name="email">
+						<input type="email" class="form-control" id="email" aria-describedby="emailHelp" name="email" required>
 						<div id="emailHelp" class="form-text">Ainda não possui cadastro? Clique abaixo e inscreva-se!</div>
 					</div>
 					<div class="mb-3">
 						<label for="password" class="form-label">Senha</label>
-						<input type="password" class="form-control" id="password" name="password">
+						<input type="password" class="form-control" id="password" name="password" required>
 					</div>
 					<button type="submit" class="btn btn-dark">Entrar</button>
 					<a class="btn btn-outline-dark" href="{{ route('register.page') }}">Cadastre-se</a>
