@@ -7,7 +7,7 @@
 		<form action="{{ route('product.store') }}" method="GET">
 			<div class="input-group mb-3">
 				<input type="text" class="form-control" placeholder="Pesquisar..." aria-label="Pesquisar..."
-					aria-describedby="searchAddon" name="search">
+					aria-describedby="searchAddon" name="search" value="{{ $search }}">
 				<button class="btn btn-outline-dark" type="submit" id="searchAddon">Pesquisar</button>
 			</div>
 		</form>
