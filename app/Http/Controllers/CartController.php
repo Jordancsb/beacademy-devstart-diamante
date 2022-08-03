@@ -120,16 +120,36 @@ class CartController extends Controller
     }
 
     public function putCheckoutCart(Request $req)
-    {
+    {   
         $user = Auth::user();
 
-        $data = $req->only('transaction_type', 'transaction_installments', 'customer_card_number', 'customer_card_cvv');
-        $data['customer_card_expiration_date'] = Carbon::createFromFormat('m/Y', $req->customer_card_expiration_date)->format('m/Y');
+        $address = Auth::user()->addresses()->findOrFail($req->address_id);
+        
+        $data = match($req->transaction_type) {
+            'ticket' => (function () use ($address) {
+                $data = [
+                    'customer_postcode' => $address->postcode,
+                    'customer_address_street' => $address->street,
+                    'customer_address_number' => $address->number,
+                    'customer_address_neighborhood' => $address->neighborhood,
+                    'customer_address_city' => $address->city,
+                    'customer_address_country' => $address->country,
+                    'transaction_type' => 'ticket'
+                ];
+
+                return $data;
+            })(),
+            'card' => (function () use ($req) {
+                $data = $req->only('transaction_installments', 'customer_card_number', 'customer_card_cvv');
+                $data['customer_card_expiration_date'] = Carbon::createFromFormat('m/Y', $req->customer_card_expiration_date)->format('m/Y');
+                $data['transaction_type'] = 'card';
+
+                return $data;
+            })()
+        };
 
         $data['customer_name'] = $user->full_name;
         $data['customer_document'] = $user->cpf;
-
-        dd(Auth::user()->addresses()->get());
 
         $orders = $user->orders()->where('status', 'cart')->get();
         $amount = 0;
@@ -140,20 +160,24 @@ class CartController extends Controller
 
         $data['transaction_amount'] = $amount;
 
-        $response = Http::withoutVerifying()->withHeaders([
+        $response = Http::withoutVerifying()
+        ->withHeaders([
             'Content-Type' => 'application/json',
             'token' => 'UGFyYWLDqW5zLCB2b2PDqiBlc3RhIGluZG8gYmVtIQ=='
-        ])->post('https://tracktools.vercel.app/api/checkout', $data)->json();
+        ])
+        ->post('https://tracktools.vercel.app/api/checkout', $data)
+        ->json();
 
         if ($response['response']['code'] != 201)
             return redirect(route('product.store'));
 
-        $this->order->where('status', 'cart')->update([
+        $user->orders()->where('status', 'cart')->update([
             'transaction_id' => $response['transaction']['id'],
+            'address_id' => $address->id,
             'status' => $response['transaction']['status']
         ]);
 
-        Mail::send('mail.order.checkout', ['orders' => $orders, 'amount' => $amount, 'transactionId' => $response['transaction']['id']], function ($mail) use ($user) {
+        Mail::send('mail.order.checkout', ['orders' => $orders, 'amount' => $amount, 'transactionId' => $response['transaction']['id'], 'type' => $data['transaction_type']], function ($mail) use ($user) {
             $mail->to($user->email);
             $mail->priority(1);
             $mail->subject("Seu pedido está em processamento, {$user->first_name}.");
