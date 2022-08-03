@@ -14,8 +14,6 @@
 					<th scope="col">Email</th>
 					<th scope="col">Contato</th>
 					<th scope="col">Nascimento</th>
-					<th scope="col">CEP</th>
-					<th scope="col">Endereço</th>
 					<th scope="col">CPF</th>
 					<th scope="col">Tipo</th>
 					<th scope="col">Ações</th>
@@ -29,8 +27,6 @@
 						<td>{{ $user->email }}</td>
 						<td>{{ $user->phone }}</td>
 						<td>{{ $user->formatted_birth_date }}</td>
-						<td>{{ $user->cep }}</td>
-						<td>{{ $user->address }}</td>
 						<td>{{ $user->cpf }}</td>
 						<td>{{ $user->admin ? 'Admin' : 'Comum' }}</td>
 						<td>

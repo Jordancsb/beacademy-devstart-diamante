@@ -28,10 +28,9 @@ class ProductController extends Controller
 
     public function getStorePage(Request $request)
     {
-        $products = $this->product->getProducts(
-            $request->search ?? ''
-        );
-        return view('product.store', compact('products'));
+        $search = $request->search ?? '';
+        $products = $this->product->getProducts($search);
+        return view('product.store', compact('products', 'search'));
     }
 
     public function getAdminListPage()

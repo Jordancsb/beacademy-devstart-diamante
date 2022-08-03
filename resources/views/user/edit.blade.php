@@ -45,18 +45,6 @@
 					id="birth-date" value="{{ $user->birth_date->format('Y-m-d') }}" name="birth_date">
 			</div>
 
-			<div class="input-group flex-nowrap mb-2">
-				<span class="input-group-text" id="cep">CEP</span>
-				<input aria-describedby="cep" required type="text" class="form-control" placeholder="00000-000" pattern="[0-9]+"
-					size="8" maxlength="8" id="cep" value="{{ $user->cep }}" name="cep">
-			</div>
-
-			<div class="input-group flex-nowrap mb-2">
-				<span class="input-group-text" id="address">Endereço</span>
-				<input aria-describedby="address" required type="text" class="form-control" placeholder="Endereço" id="address"
-					value="{{ $user->address }}" name="address">
-			</div>
-
 			<div class="form-check mb-3">
 				<input class="form-check-input" type="checkbox" value="1" id="admin" name="admin"
 					{{ (bool) $user->admin ? 'checked' : '' }}>
