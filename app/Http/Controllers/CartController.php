@@ -20,7 +20,9 @@ class CartController extends Controller
     {
         $cart = Auth::user()->orders()->where('status', 'cart')->get();
 
-        return view('cart.index', compact('cart'));
+        $addresses = Auth::user()->addresses()->get();
+
+        return view('cart.index', compact('cart', 'addresses'));
     }
 
     public function postProductToCart(Request $req, $product_id)
@@ -127,7 +129,7 @@ class CartController extends Controller
         $data['customer_name'] = $user->full_name;
         $data['customer_document'] = $user->cpf;
 
-        dd($data);
+        dd(Auth::user()->addresses()->get());
 
         $orders = $user->orders()->where('status', 'cart')->get();
         $amount = 0;

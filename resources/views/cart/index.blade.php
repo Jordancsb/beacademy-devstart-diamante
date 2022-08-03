@@ -163,6 +163,40 @@
 		</div>
 	</form>
 
+	<form action="{{ route('orders.checkout') }}" method="POST" class="modal fade" id="checkoutOrderUsingTicketModal"
+		tabindex="-1" aria-labelledby="checkoutOrderUsingTicketModalLabel" aria-hidden="true" data-bs-backdrop="static">
+		@csrf
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="checkoutOrderUsingTicketModalLabel">Endereço</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<input type="hidden" value="ticket" name="transaction_type" hidden>
+
+					<select class="form-select mb-3" aria-label="Default select example" required name="address_id">
+						<option selected disabled value="">Selecione o endereço...</option>
+						@foreach ($addresses as $address)
+							<option value="{{ $address->id }}">
+								{{ $address->formatted_full_address }}
+							</option>
+						@endforeach
+					</select>
+
+					<p>
+						Não encontrou seu endereço?
+						<a href="">Clique aqui para adicioná-lo.</a>
+					</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+					<button type="submit" class="btn btn-primary">Finalizar</button>
+				</div>
+			</div>
+		</div>
+	</form>
+
 	<form method="POST" id="deleteCartOrderForm" hidden>
 		@csrf
 		@method('DELETE')

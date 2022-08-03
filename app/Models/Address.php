@@ -19,4 +19,9 @@ class Address extends Model
         'city',
         'country'
     ];
+
+    public function getFormattedFullAddressAttribute()
+    {
+        return "{$this->street}, {$this->number}, {$this->neighborhood}, {$this->city}, {$this->country}, {$this->postcode}.";
+    }
 }
