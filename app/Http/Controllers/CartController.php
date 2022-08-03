@@ -122,10 +122,12 @@ class CartController extends Controller
         $user = Auth::user();
 
         $data = $req->only('transaction_type', 'transaction_installments', 'customer_card_number', 'customer_card_cvv');
-        $data['customer_card_expiration_date'] = Carbon::parse($req->customer_card_expiration_date)->format('m/Y');
+        $data['customer_card_expiration_date'] = Carbon::createFromFormat('m/Y', $req->customer_card_expiration_date)->format('m/Y');
 
         $data['customer_name'] = $user->full_name;
         $data['customer_document'] = $user->cpf;
+
+        dd($data);
 
         $orders = $user->orders()->where('status', 'cart')->get();
         $amount = 0;

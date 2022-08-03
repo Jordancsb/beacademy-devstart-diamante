@@ -140,8 +140,8 @@
 
 					<div class="input-group mb-2">
 						<span class="input-group-text">Data de expiração</span>
-						<input type="month" class="form-control" aria-label="Data de expiração" required
-							name="customer_card_expiration_date" placeholder="YYYY-MM">
+						<input type="text" class="form-control" aria-label="Data de expiração" required
+							name="customer_card_expiration_date" placeholder="00/0000" minlength="7" maxlength="7">
 					</div>
 
 					<div class="input-group mb-3">
