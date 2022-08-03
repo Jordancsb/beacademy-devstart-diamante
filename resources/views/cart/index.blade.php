@@ -140,8 +140,8 @@
 
 					<div class="input-group mb-2">
 						<span class="input-group-text">Data de expiração</span>
-						<input type="month" class="form-control" placeholder="Data de expiração" aria-label="Data de expiração"
-							required name="customer_card_expiration_date">
+						<input type="month" class="form-control" aria-label="Data de expiração" required
+							name="customer_card_expiration_date" placeholder="YYYY-MM">
 					</div>
 
 					<div class="input-group mb-3">
@@ -149,7 +149,8 @@
 						<select class="form-select" id="transactionInstallments" required name="transaction_installments">
 							<option disabled selected value="">Selecione</option>
 							@for ($i = 1; $i <= 12; $i++)
-								<option value="{{ $i }}">{{ $i }}x</option>
+								<option value="{{ $i }}">{{ $i }}x de R$
+									{{ number_format((float) $total / $i, 2, ',', '') }}</option>
 							@endfor
 						</select>
 					</div>
