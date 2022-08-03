@@ -144,7 +144,7 @@
 							name="customer_card_expiration_date" placeholder="00/0000" minlength="7" maxlength="7">
 					</div>
 
-					<div class="input-group mb-3">
+					<div class="input-group mb-2">
 						<label class="input-group-text" for="transactionInstallments">Parcelas</label>
 						<select class="form-select" id="transactionInstallments" required name="transaction_installments">
 							<option disabled selected value="">Selecione</option>
@@ -154,6 +154,15 @@
 							@endfor
 						</select>
 					</div>
+
+					<select class="form-select mb-3" aria-label="Default select example" required name="address_id">
+						<option selected disabled value="">Selecione o endereço...</option>
+						@foreach ($addresses as $address)
+							<option value="{{ $address->id }}">
+								{{ $address->formatted_full_address }}
+							</option>
+						@endforeach
+					</select>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>

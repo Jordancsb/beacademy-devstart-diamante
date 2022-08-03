@@ -20,8 +20,20 @@ class Address extends Model
         'country'
     ];
 
+    protected $hidden = [
+        'id',
+        'user_id',
+        'created_at',
+        'updated_at'
+    ];
+
     public function getFormattedFullAddressAttribute()
     {
         return "{$this->street}, {$this->number}, {$this->neighborhood}, {$this->city}, {$this->country}, {$this->postcode}.";
+    }
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
     }
 }
