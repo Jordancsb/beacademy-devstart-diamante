@@ -123,7 +123,7 @@ class CartController extends Controller
     {   
         $user = Auth::user();
 
-        $address = Auth::user()->addresses()->findOrFail($req->address_id);
+        $address = $user->addresses()->findOrFail($req->address_id);
         
         $data = match($req->transaction_type) {
             'ticket' => (function () use ($address) {
