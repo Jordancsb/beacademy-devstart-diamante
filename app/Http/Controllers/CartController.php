@@ -35,12 +35,20 @@ class CartController extends Controller
         ];
 
         $product = $this->product->findOrFail($product_id);
-        $newQuantity = $product->quantity - $req->quantity;
 
+		$newQuantity = $product->quantity - $req->quantity;
+        
         if ($newQuantity < 0)
-            return redirect()->back();
-
-        $this->order->create($data);
+        	return redirect()->back();
+        		
+		if ($cartOrder = Auth::user()->orders()->where('status', 'cart')->where('product_id', $product_id)->first()) {
+			$cartOrder->update([
+				'product_quantity' => (int)$cartOrder->product_quantity + (int)$req->quantity
+			]);
+		} else {
+			$this->order->create($data);
+		}
+        
         $product->update([
             'quantity' => $newQuantity
         ]);
