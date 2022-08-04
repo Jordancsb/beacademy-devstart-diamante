@@ -14,6 +14,11 @@ class UserController extends Controller
 	{
 	}
 
+	function getUserConfigurationsPage()
+	{
+		return view('user.configurations');
+	}
+
 	function getLoginPage()
 	{
 		return view('auth.login');
@@ -112,5 +117,21 @@ class UserController extends Controller
 		$orders = Auth::user()->orders()->where('status', '!=', 'cart')->get();
 
 		return view('user.orders', compact('orders'));
+	}
+
+	public function putUpdateSelfUserData(Request $req)
+	{
+		$data = $req->only('first_name', 'last_name', 'email', 'cpf', 'phone', 'birth_date');
+
+		if ($req->password && $req->currentPassword) {
+			if (!password_verify($req->currentPassword, Auth::user()->password))
+				return redirect()->back();
+
+			$data['password'] = bcrypt($req->password);
+		}
+
+		Auth::user()->update($data);
+
+		return redirect()->back();
 	}
 }
