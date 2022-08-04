@@ -22,6 +22,17 @@ class Order extends Model
         'updated_at' => 'datetime'
     ];
 
+    public function getTranslatedStatusAttribute()
+    {
+        return match($this->status) {
+            'cart' => 'Carrinho',
+            'pending' => 'Pendente',
+            'paid' => 'Confirmado',
+            'recused' => 'Recusado',
+            'invalid' => 'Inválido'
+        };
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class);

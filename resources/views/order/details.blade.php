@@ -31,7 +31,7 @@
 							</a>
 						</td>
 						<td>{{ $order->product_quantity }}</td>
-						<td>{{ $order->status }}</td>
+						<td>{{ $order->translated_status }}</td>
 						<td>{{ $order->updated_at->format('d/m/Y H:i:s') }}</td>
 						<td>
 							<a href="{{ route('order.view', $order->id) }}" class="btn btn-outline-light">

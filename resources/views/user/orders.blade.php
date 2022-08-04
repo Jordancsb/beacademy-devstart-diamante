@@ -20,7 +20,7 @@
 					<tr>
 						<td>{{ $order->product->name }}</td>
 						<td>{{ $order->product_quantity }}</td>
-						<td>{{ $order->status }}</td>
+						<td>{{ $order->translated_status }}</td>
 						<td>{{ $order->transaction_id }}</td>
 						<td>{{ $order->updated_at->format('d/m/Y H:i:s') }}</td>
 						<td>{{ $order->created_at->format('d/m/Y H:i:s') }}</td>
