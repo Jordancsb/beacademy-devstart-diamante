@@ -36,7 +36,7 @@
 							{{ Auth::user()->first_name }}
 						</a>
 						<ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-							<li><a class="dropdown-item disabled" href="#">Configurações</a></li>
+							<li><a class="dropdown-item" href="{{ route('user.configurations') }}">Configurações</a></li>
 							<li><a class="dropdown-item" href="{{ route('user.orders') }}">Pedidos</a></li>
 							<li><a class="dropdown-item" href="{{ route('logout') }}">Sair</a></li>
 						</ul>

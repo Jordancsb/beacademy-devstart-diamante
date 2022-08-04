@@ -165,6 +165,11 @@
 							</option>
 						@endforeach
 					</select>
+
+					<p>
+						Não encontrou seu endereço?
+						<a href="{{ route('user.configurations') }}">Clique aqui para adicioná-lo.</a>
+					</p>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
@@ -197,7 +202,7 @@
 
 					<p>
 						Não encontrou seu endereço?
-						<a href="">Clique aqui para adicioná-lo.</a>
+						<a href="{{ route('user.configurations') }}">Clique aqui para adicioná-lo.</a>
 					</p>
 				</div>
 				<div class="modal-footer">
