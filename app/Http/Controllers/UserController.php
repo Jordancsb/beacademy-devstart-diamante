@@ -6,6 +6,7 @@ use App\Http\Requests\UserLoginFormRequest;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Request;
+use App\Http\Requests\RegisterNewUserRequest;
 
 class UserController extends Controller
 {
@@ -53,7 +54,7 @@ class UserController extends Controller
 		return redirect(route('login'), 303);
 	}
 
-	public function postNewUser(Request $req)
+	public function postNewUser(RegisterNewUserRequest $req)
 	{
 		$data = $req->only(
 			'first_name',
@@ -67,10 +68,10 @@ class UserController extends Controller
 		$data['password'] = bcrypt($req->password);
 
 		if (!$this->user->create($data)) {
-			return redirect()->route('login')->with("error", "Usuario não cadastrado.");
+			return redirect()->route('login')->with("error", "Usuário não cadastrado.");
 		}
 
-		return redirect()->route('login')->with("success", "Usuario cadastrado.");
+		return redirect()->route('login')->with("success", "Usuário cadastrado.");
 	}
 
 	public function getLogout()

@@ -16,8 +16,8 @@
 
 					<div class="input-group flex-nowrap mb-2">
 						<span class="input-group-text">Nome Completo</span>
-						<input required type="text" class="form-control" placeholder="Nome" name="first_name">
-						<input required type="text" class="form-control" placeholder="Sobrenome" name="last_name">
+						<input required type="text" class="form-control" placeholder="Nome" name="first_name" maxlength="50">
+						<input required type="text" class="form-control" placeholder="Sobrenome" name="last_name" maxlength="50">
 					</div>
 
 					<div class="input-group flex-nowrap mb-2">
@@ -29,7 +29,7 @@
 					<div class="input-group flex-nowrap mb-2">
 						<span class="input-group-text" id="password">Senha</span>
 						<input aria-describedby="password" required type="password" class="form-control" placeholder="********"
-							id="password" name="password">
+							id="password" name="password" minlength="6" maxlength="12">
 					</div>
 
 					<div class="input-group flex-nowrap mb-2">
