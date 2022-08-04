@@ -87,8 +87,10 @@
 						Valor Total: R$ {{ $total }}
 					</h4>
 					<a href="{{ route('product.store') }}" class="btn btn-outline-success btn-lg">Continuar Comprando</a>
-					<button class="btn btn-danger btn-lg" data-bs-toggle="modal" data-bs-target="#selectPaymentTypeModal">Fechar
-						Compra</button>
+					@if (count($cart) > 0)
+						<button class="btn btn-danger btn-lg" data-bs-toggle="modal" data-bs-target="#selectPaymentTypeModal">Fechar
+							Compra</button>
+					@endif
 				</div>
 			</li>
 		</ul>
