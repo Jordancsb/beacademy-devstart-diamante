@@ -13,7 +13,10 @@
 					</li>
 
 					<li class="nav-item">
-						<a class="nav-link" href="{{ route('cart.index') }}">Carrinho</a>
+						<a class="nav-link" href="{{ route('cart.index') }}">
+							Carrinho
+							<span class="badge text-bg-success">{{ Auth::user()->orders()->where('status', 'cart')->count() }}</span>
+						</a>
 					</li>
 
 					@if (Auth::user()->admin)
