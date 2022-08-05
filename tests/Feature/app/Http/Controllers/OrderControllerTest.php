@@ -8,6 +8,7 @@ use Tests\TestCase;
 use App\Models\Order;
 use App\Models\User;
 use App\Models\Product;
+use App\Models\Address;
 
 class OrderControllerTest extends TestCase
 {
@@ -22,6 +23,7 @@ class OrderControllerTest extends TestCase
         // PREPARE
         $rootUser = User::factory()->create();
         Product::factory()->create();
+        Address::factory()->create();
         $order = Order::factory()->create();
 
         // ACT
@@ -38,6 +40,7 @@ class OrderControllerTest extends TestCase
         // PREPARE
         $adminUser = User::factory()->create(['admin' => true]);
         Product::factory()->create();
+        Address::factory()->create();
         $order = Order::factory()->create();
 
         // ACT

@@ -8,6 +8,7 @@ use Tests\TestCase;
 use App\Models\User;
 use App\Models\Product;
 use App\Models\Order;
+use App\Models\Address;
 
 class CartControllerTest extends TestCase
 {
@@ -41,6 +42,7 @@ class CartControllerTest extends TestCase
     {
         // PREPARE
         $user = User::factory()->create();
+        Address::factory()->create();
         $product = Product::factory()->create(['quantity' => 1]);
 
         $payload = ['quantity' => 1];
@@ -66,7 +68,8 @@ class CartControllerTest extends TestCase
         // PREPARE
         $rootUser = User::factory()->create();
         Product::factory()->create();
-        $order = Order::factory()->create();
+        Address::factory()->create();
+        $order = Order::factory()->create(['status' => 'finished']);
 
         // ACT
         $this->actingAs($rootUser);
@@ -82,6 +85,7 @@ class CartControllerTest extends TestCase
         // PREPARE
         $user = User::factory()->create();
         $product = Product::factory()->create(['quantity' => 0]);
+        Address::factory()->create();
         $order = Order::factory()->create(['status' => 'cart', 'product_quantity' => 1]);
 
         // ACT
@@ -100,6 +104,7 @@ class CartControllerTest extends TestCase
         // PREPARE
         $user = User::factory()->create();
         $product = Product::factory()->create(['quantity' => 0]);
+        Address::factory()->create();
         $order = Order::factory()->create(['status' => 'cart', 'product_quantity' => 2]);
 
         // ACT
@@ -118,6 +123,7 @@ class CartControllerTest extends TestCase
         // PREPARE
         $user = User::factory()->create();
         $product = Product::factory()->create(['quantity' => 1]);
+        Address::factory()->create();
         $order = Order::factory()->create(['status' => 'cart', 'product_quantity' => 1]);
 
         // ACT

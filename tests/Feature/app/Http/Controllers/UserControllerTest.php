@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\App\Http\Controllers;
+namespace Tests\Feature\app\Http\Controllers;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -74,12 +74,15 @@ class UserControllerTest extends TestCase
 	{
 		// PREPARE
 		$payload = User::factory()->definition();
+		$payload['phone'] = 1234567891234;
+		$payload['password'] = 'password';
 
 		// ACT
 		$response = $this->post(route('users.create'), $payload);
 
 		// ASSERT
 		$response->assertRedirect(route('login'));
+		$this->assertDatabaseCount(User::class , 1);
 		$this->assertDatabaseHas(User::class , [
 			'email' => $payload['email'],
 		]);

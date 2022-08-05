@@ -13,6 +13,7 @@ class Order extends Model
         'user_id',
         'product_id',
         'product_quantity',
+        'transaction_id',
         'status'
     ];
 
@@ -20,6 +21,17 @@ class Order extends Model
         'created_at' => 'datetime',
         'updated_at' => 'datetime'
     ];
+
+    public function getTranslatedStatusAttribute()
+    {
+        return match($this->status) {
+            'cart' => 'Carrinho',
+            'pending' => 'Pendente',
+            'paid' => 'Confirmado',
+            'recused' => 'Recusado',
+            'invalid' => 'Inválido'
+        };
+    }
 
     public function user()
     {
@@ -29,5 +41,10 @@ class Order extends Model
     public function product()
     {
         return $this->belongsTo(Product::class);
+    }
+
+    public function address()
+    {
+        return $this->belongsTo(Address::class);
     }
 }

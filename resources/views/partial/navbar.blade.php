@@ -13,7 +13,10 @@
 					</li>
 
 					<li class="nav-item">
-						<a class="nav-link" href="{{ route('cart.index') }}">Carrinho</a>
+						<a class="nav-link" href="{{ route('cart.index') }}">
+							Carrinho
+							<span class="badge text-bg-success">{{ Auth::user()->orders()->where('status', 'cart')->count() }}</span>
+						</a>
 					</li>
 
 					@if (Auth::user()->admin)
@@ -33,10 +36,10 @@
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
 							data-bs-toggle="dropdown" aria-expanded="false">
-							Perfil
+							{{ Auth::user()->first_name }}
 						</a>
 						<ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-							<li><a class="dropdown-item" href="#">Configurações</a></li>
+							<li><a class="dropdown-item" href="{{ route('user.configurations') }}">Configurações</a></li>
 							<li><a class="dropdown-item" href="{{ route('user.orders') }}">Pedidos</a></li>
 							<li><a class="dropdown-item" href="{{ route('logout') }}">Sair</a></li>
 						</ul>

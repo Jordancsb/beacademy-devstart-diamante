@@ -29,6 +29,12 @@
 			</div>
 
 			<div class="input-group flex-nowrap mb-2">
+				<span class="input-group-text" id="orderProductTransactionIdSpan"><strong>Código</strong></span>
+				<input aria-describedby="orderProductTransactionIdSpan" readonly type="text" class="form-control"
+					id="orderProductQuantityInput" value="{{ $order->transaction_id }}">
+			</div>
+
+			<div class="input-group flex-nowrap mb-2">
 				<span class="input-group-text" id="orderStatusSpan"><strong>Status</strong></span>
 				<input aria-describedby="orderStatusSpan" readonly type="text" class="form-control" id="orderStatusInput"
 					value="{{ $order->status }}">

@@ -7,7 +7,7 @@
 		<form action="{{ route('product.store') }}" method="GET">
 			<div class="input-group mb-3">
 				<input type="text" class="form-control" placeholder="Pesquisar..." aria-label="Pesquisar..."
-					aria-describedby="searchAddon" name="search">
+					aria-describedby="searchAddon" name="search" value="{{ $search }}">
 				<button class="btn btn-outline-dark" type="submit" id="searchAddon">Pesquisar</button>
 			</div>
 		</form>
@@ -28,22 +28,26 @@
 
 									<div class="row">
 										<div class="col">
-											<p class="card-text"><strong>Tamanho: </strong>
+											<p class="card-text fs-5"><strong>Tamanho: </strong>
 												<span class="badge rounded-pill bg-secondary">{{ $product->size }}</span>
 											</p>
 										</div>
 										<div class="col">
-											<p class="card-text"><strong>R$</strong> {{ $product->sale_price }}</p>
+											<p class="card-text fs-5"><strong>Estoque: </strong>
+												<span class="badge rounded-pill bg-dark text-light">{{ $product->quantity }}</span>
+											</p>
+										</div>
+										<div class="col">
+											<p class="card-text fs-5"><strong>R$</strong> {{ $product->sale_price }}</p>
 										</div>
 									</div>
 
 									<form action="{{ route('cart.create', $product->id) }}" method="post" class="mt-3 mb-0">
 										@csrf
 										<div class="row">
-											<div class="col col-sm-6 form-floating mb-3">
-												<input type="number" class="form-control" id="quantityInput" placeholder="1" value="1" name="quantity"
-													min="1" max="{{ $product->quantity }}">
-												<label for="quantityInput">Quantidade</label>
+											<div class="col col-sm-6">
+												<input type="number" class="form-control h-100 fs-5" id="quantityInput" placeholder="1" value="1"
+													name="quantity" min="1" max="{{ $product->quantity }}">
 											</div>
 
 											<div class="col col-sm-6">

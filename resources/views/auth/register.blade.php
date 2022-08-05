@@ -16,8 +16,8 @@
 
 					<div class="input-group flex-nowrap mb-2">
 						<span class="input-group-text">Nome Completo</span>
-						<input required type="text" class="form-control" placeholder="Nome" name="first_name">
-						<input required type="text" class="form-control" placeholder="Sobrenome" name="last_name">
+						<input required type="text" class="form-control" placeholder="Nome" name="first_name" maxlength="50">
+						<input required type="text" class="form-control" placeholder="Sobrenome" name="last_name" maxlength="50">
 					</div>
 
 					<div class="input-group flex-nowrap mb-2">
@@ -29,7 +29,7 @@
 					<div class="input-group flex-nowrap mb-2">
 						<span class="input-group-text" id="password">Senha</span>
 						<input aria-describedby="password" required type="password" class="form-control" placeholder="********"
-							id="password" name="password">
+							id="password" name="password" minlength="6" maxlength="12">
 					</div>
 
 					<div class="input-group flex-nowrap mb-2">
@@ -48,18 +48,6 @@
 						<span class="input-group-text" id="birth-date">Data de Nascimento</span>
 						<input aria-describedby="birth-date" required type="date" class="form-control" placeholder="00/00/0000"
 							id="birth-date" name="birth_date">
-					</div>
-
-					<div class="input-group flex-nowrap mb-2">
-						<span class="input-group-text" id="cep">CEP</span>
-						<input aria-describedby="cep" required type="text" class="form-control" placeholder="00000-000" pattern="[0-9]+"
-							size="8" maxlength="8" id="cep" name="cep">
-					</div>
-
-					<div class="input-group flex-nowrap mb-3">
-						<span class="input-group-text" id="address">Endereço</span>
-						<input aria-describedby="address" required type="text" class="form-control" placeholder="Endereço"
-							id="address" name="address">
 					</div>
 
 					<a class="btn btn-outline-dark" href="{{ route('login') }}">Entrar</a>

@@ -87,11 +87,131 @@
 						Valor Total: R$ {{ $total }}
 					</h4>
 					<a href="{{ route('product.store') }}" class="btn btn-outline-success btn-lg">Continuar Comprando</a>
-					<button class="btn btn-danger btn-lg">Fechar Compra</button>
+					@if (count($cart) > 0)
+						<button class="btn btn-danger btn-lg" data-bs-toggle="modal" data-bs-target="#selectPaymentTypeModal">Fechar
+							Compra</button>
+					@endif
 				</div>
 			</li>
 		</ul>
 	</div>
+
+	<div class="modal fade" id="selectPaymentTypeModal" aria-hidden="true" aria-labelledby="selectPaymentTypeModalLabel"
+		tabindex="-1">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="selectPaymentTypeModalLabel">Método de pagamento</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					Selecione o método de pagamento a ser utilizado.
+				</div>
+				<div class="modal-footer">
+					<button class="btn btn-outline-dark" data-bs-target="#checkoutOrderUsingCardModal"
+						data-bs-toggle="modal">Cartão</button>
+					<button class="btn btn-dark" data-bs-target="#checkoutOrderUsingTicketModal" data-bs-toggle="modal">Boleto</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<form action="{{ route('orders.checkout') }}" method="POST" class="modal fade" id="checkoutOrderUsingCardModal"
+		tabindex="-1" aria-labelledby="checkoutOrderUsingCardModalLabel" aria-hidden="true" data-bs-backdrop="static">
+		@csrf
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="checkoutOrderUsingCardModalLabel">Preencha as informações do cartão</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<input type="hidden" value="card" name="transaction_type" hidden>
+
+					<div class="input-group mb-2">
+						<span class="input-group-text" id="cardNumber">Número</span>
+						<input type="text" class="form-control" placeholder="1111222233334444" minlength="16" maxlength="16"
+							required aria-label="Número" pattern="[0-9]+" aria-describedby="cardNumber" name="customer_card_number">
+					</div>
+
+					<div class="input-group mb-2">
+						<span class="input-group-text" id="cardCvv">CVV</span>
+						<input type="text" class="form-control" placeholder="CVV" aria-label="CVV" placeholder="123"
+							minlength="3" maxlength="3" pattern="[0-9]+" required aria-describedby="cardCvv" name="customer_card_cvv">
+					</div>
+
+					<div class="input-group mb-2">
+						<span class="input-group-text">Data de expiração</span>
+						<input type="text" class="form-control" aria-label="Data de expiração" required
+							name="customer_card_expiration_date" placeholder="00/0000" minlength="7" maxlength="7">
+					</div>
+
+					<div class="input-group mb-2">
+						<label class="input-group-text" for="transactionInstallments">Parcelas</label>
+						<select class="form-select" id="transactionInstallments" required name="transaction_installments">
+							<option disabled selected value="">Selecione</option>
+							@for ($i = 1; $i <= 12; $i++)
+								<option value="{{ $i }}">{{ $i }}x de R$
+									{{ number_format((float) $total / $i, 2, ',', '') }}</option>
+							@endfor
+						</select>
+					</div>
+
+					<select class="form-select mb-3" aria-label="Default select example" required name="address_id">
+						<option selected disabled value="">Selecione o endereço...</option>
+						@foreach ($addresses as $address)
+							<option value="{{ $address->id }}">
+								{{ $address->formatted_full_address }}
+							</option>
+						@endforeach
+					</select>
+
+					<p>
+						Não encontrou seu endereço?
+						<a href="{{ route('user.configurations') }}">Clique aqui para adicioná-lo.</a>
+					</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+					<button type="submit" class="btn btn-primary">Finalizar</button>
+				</div>
+			</div>
+		</div>
+	</form>
+
+	<form action="{{ route('orders.checkout') }}" method="POST" class="modal fade" id="checkoutOrderUsingTicketModal"
+		tabindex="-1" aria-labelledby="checkoutOrderUsingTicketModalLabel" aria-hidden="true" data-bs-backdrop="static">
+		@csrf
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="checkoutOrderUsingTicketModalLabel">Endereço</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<input type="hidden" value="ticket" name="transaction_type" hidden>
+
+					<select class="form-select mb-3" aria-label="Default select example" required name="address_id">
+						<option selected disabled value="">Selecione o endereço...</option>
+						@foreach ($addresses as $address)
+							<option value="{{ $address->id }}">
+								{{ $address->formatted_full_address }}
+							</option>
+						@endforeach
+					</select>
+
+					<p>
+						Não encontrou seu endereço?
+						<a href="{{ route('user.configurations') }}">Clique aqui para adicioná-lo.</a>
+					</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+					<button type="submit" class="btn btn-primary">Finalizar</button>
+				</div>
+			</div>
+		</div>
+	</form>
 
 	<form method="POST" id="deleteCartOrderForm" hidden>
 		@csrf

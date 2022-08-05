@@ -17,15 +17,18 @@ class DatabaseSeeder extends Seeder
 
 		\App\Models\Product::factory(20)->create();
 
+		\App\Models\Address::factory(10)->create();
+
 		\App\Models\Order::factory(5)->create();
 
 		\App\Models\User::factory()->create([
-			'first_name' => 'Admin',
-			'last_name' => 'Admin',
-			'phone' => '(00) 0 0000-0000',
 			'email' => 'admin@email.com',
 			'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
 			'admin' => true
+		]);
+
+		\App\Models\Address::factory()->create([
+			'user_id' => 11
 		]);
 	}
 }

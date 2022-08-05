@@ -5,6 +5,7 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\User;
 use App\Models\Product;
+use App\Models\Address;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Order>
@@ -21,8 +22,9 @@ class OrderFactory extends Factory
 		return [
 			'user_id' => User::all()->random()->id,
 			'product_id' => Product::all()->random()->id,
+			'address_id' => Address::all()->random()->id,
 			'product_quantity' => $this->faker->numberBetween(1, 20),
-			'status' => $this->faker->word(),
+			'status' => $this->faker->randomElement(['cart'])
 		];
 	}
 }

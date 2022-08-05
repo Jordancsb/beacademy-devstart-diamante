@@ -6,11 +6,17 @@ use App\Http\Requests\UserLoginFormRequest;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Request;
+use App\Http\Requests\RegisterNewUserRequest;
 
 class UserController extends Controller
 {
 	public function __construct(private User $user)
 	{
+	}
+
+	function getUserConfigurationsPage()
+	{
+		return view('user.configurations');
 	}
 
 	function getLoginPage()
@@ -53,7 +59,7 @@ class UserController extends Controller
 		return redirect(route('login'), 303);
 	}
 
-	public function postNewUser(Request $req)
+	public function postNewUser(RegisterNewUserRequest $req)
 	{
 		$data = $req->only(
 			'first_name',
@@ -62,17 +68,15 @@ class UserController extends Controller
 			'phone',
 			'cpf',
 			'birth_date',
-			'cep',
-			'address'
 		);
 
 		$data['password'] = bcrypt($req->password);
 
 		if (!$this->user->create($data)) {
-			return redirect()->route('login')->with("error", "Usuario não cadastrado.");
+			return redirect()->route('login')->with("error", "Usuário não cadastrado.");
 		}
 
-		return redirect()->route('login')->with("success", "Usuario cadastrado.");
+		return redirect()->route('login')->with("success", "Usuário cadastrado.");
 	}
 
 	public function getLogout()
@@ -86,7 +90,7 @@ class UserController extends Controller
 	{
 		$user = $this->user->findOrFail($id);
 
-		$data = $req->only('first_name', 'last_name', 'email', 'phone', 'cpf', 'birth_date', 'cep', 'address');
+		$data = $req->only('first_name', 'last_name', 'email', 'phone', 'cpf', 'birth_date');
 		$data['admin'] = (bool)$req->admin ?? false;
 
 		if ($req->password)
@@ -113,5 +117,21 @@ class UserController extends Controller
 		$orders = Auth::user()->orders()->where('status', '!=', 'cart')->get();
 
 		return view('user.orders', compact('orders'));
+	}
+
+	public function putUpdateSelfUserData(Request $req)
+	{
+		$data = $req->only('first_name', 'last_name', 'email', 'cpf', 'phone', 'birth_date');
+
+		if ($req->password && $req->currentPassword) {
+			if (!password_verify($req->currentPassword, Auth::user()->password))
+				return redirect()->back();
+
+			$data['password'] = bcrypt($req->password);
+		}
+
+		Auth::user()->update($data);
+
+		return redirect()->back();
 	}
 }
