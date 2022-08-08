@@ -34,7 +34,7 @@ cd <folder>
 ```
 
 ```sh
-# Instale as depêndencias
+# Instale as dependências
 composer install
 ```
 
