@@ -12,7 +12,7 @@ class AddressControllerTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function testUserCanUnlinkAnAddress()
+    public function testUserCanUnlinkAnAddressToHisAccount()
     {
         // PREPARE
         $user = User::factory()->create();
