@@ -37,7 +37,7 @@ class AddressController extends Controller
 
     public function getEditPage($id)
     {
-        $address = $this->address->findOrFail($id);
+        $address = Auth::user()->addresses()->findOrFail($id);
 
         return view('user.address.edit', compact('address'));
     }
@@ -46,7 +46,7 @@ class AddressController extends Controller
     {
         $data = $req->only('postcode', 'street', 'number', 'neighborhood', 'city', 'state', 'country');
 
-        $address = $this->address->findOrFail($id);
+        $address = Auth::user()->addresses()->findOrFail($id);
 
         $address->update($data);
 
